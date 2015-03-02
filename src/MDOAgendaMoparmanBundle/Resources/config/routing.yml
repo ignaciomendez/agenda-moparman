@@ -1,0 +1,24 @@
+mdo_agenda_moparman_contacts:
+    path:     /contacts
+    defaults: { _controller: MDOAgendaMoparmanBundle:Contacts:index }
+
+mdo_agenda_moparman_contacts_add:
+    path:      /contacts/add
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:addContact, page: 1 }
+
+mdo_agenda_moparman_contacts_category:
+    path:      /contacts/category/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:showContacts }
+
+
+mdo_agenda_moparman_contacts_delete:
+    path:      /contacts/delete
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:deleteContacts }
+
+mdo_agenda_moparman_contacts_single:
+    path:      /contact/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:showContact }
+
+mdo_agenda_moparman_contacts_edit:
+    path:      /contact/edit/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:editContact }

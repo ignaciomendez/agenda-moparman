@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Agenda Moparman{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        {% javascripts
+        '@MDOAgendaMoparmanBundle/Resources/public/js/jquery.js'
+        '@MDOAgendaMoparmanBundle/Resources/public/js/*'
+        output='js/compiled/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% stylesheets '@MDOAgendaMoparmanBundle/Resources/public/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(document).foundation();
+            });
+
+        </script>
+    </head>
+    <body>
+    <div class="row collapse">
+        <div class="small-10 columns">
+            {% image '@MDOAgendaMoparmanBundle/Resources/public/images/logo.png' %}
+            <img src="{{ asset_url }}" alt="Example" />
+            {% endimage %}
+        </div>
+        <br/>
+        <div class=" small-2 columns">
+            <div class="row collapse">
+                <div class="large-10 small-9 columns">
+                    <form method="get" action="/forum/posts" accept-charset="UTF-8"><div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8"></div>
+                        <input type="text" placeholder="Buscar" name="search" id="search" class="search-bar">
+                    </form></div>
+                <div class="large-2 small-3 columns">
+                    <button type="submit" name="button" class="postfix search button expand"><i class="general fi-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <dl class="sub-nav">
+            <dd><a href="/categories">Categorías</a></dd>
+            <dd><a href="/contacts">Contactos</a></dd>
+        </dl>
+    </div>
+
+        <div class="row">
+            <div class="large-12 medium-12 columns">
+                <ul class="breadcrumbs">
+                    {% for item in breadcrumbs %}
+                        <li><a href="{{ item.link }}">{{ item.section }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+    <div class="row">
+        <hr/>
+        <div class="large-12 columns text-right">
+            <p>&copy; 2014, Sergio Milardovich</p>
+        </div>
+    </div>
+    </body>
+</html>
+

@@ -1,0 +1,80 @@
+{
+    "dependencies": {
+        "other_package": {
+            "canonicalDir": "../components/other_package",
+            "pkgMeta": {
+                "main": [
+                    "styles.css",
+                    "script.js"
+                ],
+                "scripts": [
+                    "main.js",
+                    "customized.js"
+                ],
+                "styles": [
+                    "main.css",
+                    "customized.css"
+                ]
+            },
+            "dependencies": {
+                "package": {
+                    "pkgMeta": {
+                        "main": "package.js"
+                    }
+                }
+            }
+        },
+        "package": {
+            "canonicalDir": "../components/package",
+            "pkgMeta": {
+                "main": "package.js"
+            }
+        },
+        "dependency_package": {
+            "canonicalDir": "../components/dependency_package",
+            "pkgMeta": {
+                "main": [
+                    "script.js",
+                    "utils.js",
+                    "styles.css",
+                    "navigation.css"
+                ],
+                "scripts": [
+                    "script.js",
+                    "utils.js"
+                ],
+                "styles": [
+                    "styles.css",
+                    "navigation.css"
+                ]
+            },
+            "dependencies": {
+                "package": {
+                    "pkgMeta": {
+                        "main": "package.js"
+                    }
+                },
+                "other_package": {
+                    "pkgMeta": {
+                        "main": [
+                            "styles.css",
+                            "script.js"
+                        ],
+                        "scripts": [
+                            "main.js",
+                            "customized.js"
+                        ],
+                        "styles": [
+                            "main.css",
+                            "customized.css"
+                        ]
+                    }
+                }
+            }
+        },
+        "invalid-package_name": {
+        },
+        "boo_package": {
+        }
+    }
+}

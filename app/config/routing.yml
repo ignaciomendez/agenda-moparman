@@ -1,0 +1,7 @@
+mdo_agenda_moparman:
+    resource: "@MDOAgendaMoparmanBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

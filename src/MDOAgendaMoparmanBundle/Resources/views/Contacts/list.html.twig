@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<form method="post" id="contacts-form" action="/contacts/delete">
+    <div class="large-12 columns">
+        {% if letter == 'success' %}
+            <div class="alert-box success radius" data-alert="">
+                <strong>¡Éxito!</strong> los contactos se han eliminado correctamente.
+                <a class="close" href="#">×</a>
+            </div>
+        {% endif %}
+        <table>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ contact.id }}" /></td>
+                    <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
+                    <td width="200"><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></td>
+                    <td width="200">{{ contact.phone }}</td>
+                    <td width="200">{{ contact.city }}</td>
+                    <td width="200">
+                        {% for category in contact.getCategories %}
+                            <span class="label secondary"><a href="/category/{{ category.id }}">{{ category.name }}</a></span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    <div class="small-4 columns right">
+        <div class="row">
+            <div class="small-6 columns">
+                <a class="button tiny alert expand" href="#" onclick="$('#contacts-form').submit();">Borrar Selección</a>
+            </div>
+            <div class="small-6 columns">
+                <a class="button tiny success expand" href="/contacts/add">Agregar Nuevo Contacto</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+{% endblock %}
+

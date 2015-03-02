@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sp_bower.install_on_warmup">true</parameter>
+        <parameter key="sp_bower.bower.class">Sp\BowerBundle\Bower\Bower</parameter>
+        <parameter key="sp_bower.bower_manager.class">Sp\BowerBundle\Bower\BowerManager</parameter>
+        <parameter key="sp_bower.bower.configuration.class">Sp\BowerBundle\Bower\Configuration</parameter>
+        <parameter key="sp_bower.bower.bin">/usr/bin/bower</parameter>
+        <parameter key="sp_bower.file_resource.class">Symfony\Component\Config\Resource\FileResource</parameter>
+        <parameter key="sp_bower.directory_resource.class">Symfony\Component\Config\Resource\DirectoryResource</parameter>
+        <parameter key="sp_bower.filesystem_cache.class">Doctrine\Common\Cache\FilesystemCache</parameter>
+        <parameter key="sp_bower.dependency_cache_warmer.class">Sp\BowerBundle\CacheWarmer\DependencyCacheWarmer</parameter>
+        <parameter key="sp_bower.exec_listener.class">Sp\BowerBundle\EventListener\ExecListener</parameter>
+        <parameter key="sp_bower.cache_create_listener.class">Sp\BowerBundle\EventListener\CacheCreateListener</parameter>
+        <parameter key="sp_bower.bower.offline">0</parameter>
+        <parameter key="sp_bower.bower.allow_root">0</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="sp_bower.filesystem_cache" class="%sp_bower.filesystem_cache.class%" abstract="true" public="false">
+            <argument />
+            <argument>.sp_bower.data</argument>
+        </service>
+
+        <service id="sp_bower.dependency_cache_warmer" class="%sp_bower.dependency_cache_warmer.class%">
+            <tag name="kernel.cache_warmer" priority="20" />
+            <argument type="service" id="sp_bower.bower_manager" />
+            <argument type="service" id="sp_bower.bower" />
+            <argument>%sp_bower.install_on_warmup%</argument>
+        </service>
+
+        <service id="sp_bower.exec_listener" class="%sp_bower.exec_listener.class%">
+            <argument>%sp_bower.cache_dir%</argument>
+        </service>
+
+        <service id="sp_bower.cache_create_listener" class="%sp_bower.cache_create_listener.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="sp_bower.bower" />
+        </service>
+
+        <service id="sp_bower.bower" class="%sp_bower.bower.class%">
+            <argument>%sp_bower.bower.bin%</argument>
+            <argument type="service" id="event_dispatcher" />
+            <argument>null</argument>
+            <argument>%sp_bower.bower.offline%</argument>
+            <argument>%sp_bower.bower.allow_root%</argument>
+        </service>
+
+        <service id="sp_bower.bower_manager" class="%sp_bower.bower_manager.class%" />
+    </services>
+</container>

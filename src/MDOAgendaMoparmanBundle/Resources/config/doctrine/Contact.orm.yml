@@ -1,0 +1,35 @@
+MDOAgendaMoparmanBundle\Entity\Contact:
+    type: entity
+    table: null
+    repositoryClass: MDOAgendaMoparmanBundle\Entity\ContactRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: 255
+        city:
+            type: string
+            length: 255
+        notes:
+            type: text
+        photo:
+            type: string
+            length: 255
+        categories:
+            type: array
+    lifecycleCallbacks: {  }
+    manyToMany:
+            category:
+                targetEntity: Category
+                inversedBy: contacts

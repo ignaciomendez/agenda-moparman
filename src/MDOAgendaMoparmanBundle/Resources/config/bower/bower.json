@@ -1,0 +1,7 @@
+{
+    "name": "agenda-moparman",
+    "version": "1.0.0",
+    "dependencies": {
+        "bower-foundation": "latest"
+    }
+}
