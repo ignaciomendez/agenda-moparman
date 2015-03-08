@@ -201,7 +201,7 @@ class ContactsController extends Controller
 
         $breadcrumbs = array(
             array('link' => '#', 'section' => 'home'),
-            array('link' => '/contacts', 'section' => 'Editar Contactos'),
+            array('link' => '/contacts', 'section' => 'Contactos'),
             array('link' => '/contacts/edit/'.$contact->getId(), 'section' => $contact->getName())
         );
 

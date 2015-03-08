@@ -31,6 +31,11 @@ mdo_agenda_moparman_categories_add:
     path:      /categories/add
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:addCategory }
 
+mdo_agenda_moparman_categories_edit:
+    path:      /categories/edit/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:editCategory }
+
+
 mdo_agenda_moparman_categories_delete:
     path:      /categories/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:deleteCategories }

@@ -97,6 +97,47 @@ class CategoriesController extends Controller
         return $this->redirect('/categories?success');
     }
 
+    public function editCategoryAction($id, Request $request){
+        $letter = null;
+        if($request->query->get('success') !== null)
+            $letter = 'success';
+
+        $category = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Category')
+            ->findById($id)[0];
+
+        $breadcrumbs = array(
+            array('link' => '#', 'section' => 'home'),
+            array('link' => '/categories', 'section' => 'Categorías'),
+            array('link' => '/categories/edit/'.$category->getId(), 'section' => $category->getName())
+        );
+
+        $form = $this->createFormBuilder()
+            ->add('name', 'text', array('label' => 'Nombre', 'data' => $category->getName()))
+            ->add('save', 'submit', array('label' => 'Editar Contacto'))
+            ->getForm();
+
+
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $category->setName($data['name']);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirect('/categories/edit/'.$id.'?success');
+        }
+
+        return $this->render('MDOAgendaMoparmanBundle:Categories:edit.html.twig', array( 'form' => $form->createView(),'letter' => $letter,'breadcrumbs' => $breadcrumbs, 'category' => $category));
+    }
+
+
 
 
 }
