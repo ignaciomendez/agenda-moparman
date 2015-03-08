@@ -23,21 +23,21 @@
     </head>
     <body>
     <div class="row collapse">
-        <div class="small-10 columns">
+        <div class="small-8 columns">
             {% image '@MDOAgendaMoparmanBundle/Resources/public/images/logo.png' %}
             <img src="{{ asset_url }}" alt="Example" />
             {% endimage %}
         </div>
         <br/>
-        <div class=" small-2 columns">
+        <div class=" small-4 columns">
             <div class="row collapse">
-                <!--  <div class="large-10 small-9 columns">
+                 <div class="large-10 small-9 columns">
                     <form method="get" action="/forum/posts" accept-charset="UTF-8"><div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8"></div>
                          <input type="text" placeholder="Buscar" name="search" id="search" class="search-bar">
                      </form></div>
                  <div class="large-2 small-3 columns">
-                     <button type="submit" name="button" class="postfix search button expand"><i class="general fi-magnifying-glass"></i></button>
-                 </div>-->
+                     <button onclick="window.location.href = '/search/'+$('#search').val();" type="submit" name="button" class="postfix search button expand">Buscar</button>
+                 </div>
             </div>
         </div>
     </div>

@@ -1,3 +1,7 @@
+mdo_agenda_moparman_index:
+    path:     /
+    defaults: { _controller: MDOAgendaMoparmanBundle:Default:index }
+
 mdo_agenda_moparman_contacts:
     path:     /contacts
     defaults: { _controller: MDOAgendaMoparmanBundle:Contacts:index }

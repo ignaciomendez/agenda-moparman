@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     {
         $breadcrumbs = array(
             array(
-                'link' => '#',
+                'link' => '/',
                 'section' => 'Home'
             ),
             array (
@@ -107,7 +107,7 @@ class CategoriesController extends Controller
             ->findById($id)[0];
 
         $breadcrumbs = array(
-            array('link' => '#', 'section' => 'home'),
+            array('link' => '/', 'section' => 'home'),
             array('link' => '/categories', 'section' => 'Categorías'),
             array('link' => '/categories/edit/'.$category->getId(), 'section' => $category->getName())
         );

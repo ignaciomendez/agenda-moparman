@@ -18,7 +18,7 @@ class DefaultController extends Controller
                 'section' => 'Home'
             )
         );
-        return $this->render('MDOAgendaMoparmanBundle:Default:contacts.html.twig', array('name' => $name, 'breadcrumbs' => $breadcrumbs, 'contacts' => $contacts));
+        return $this->render('MDOAgendaMoparmanBundle:Default:dashboard.html.twig', array('breadcrumbs' => $breadcrumbs));
     }
-    
+
 }
