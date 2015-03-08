@@ -25,6 +25,15 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $allow = array();
         $pathinfo = rawurldecode($pathinfo);
 
+        // mdo_agenda_moparman_index
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'mdo_agenda_moparman_index');
+            }
+
+            return array (  '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\DefaultController::indexAction',  '_route' => 'mdo_agenda_moparman_index',);
+        }
+
         if (0 === strpos($pathinfo, '/c')) {
             if (0 === strpos($pathinfo, '/contact')) {
                 if (0 === strpos($pathinfo, '/contacts')) {

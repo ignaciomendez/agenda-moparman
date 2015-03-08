@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 class appProdUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
     private static $declaredRoutes = array(
+        'mdo_agenda_moparman_index' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\DefaultController::indexAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/',    ),  ),  4 =>   array (  ),),
         'mdo_agenda_moparman_contacts' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\ContactsController::indexAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/contacts',    ),  ),  4 =>   array (  ),),
         'mdo_agenda_moparman_contacts_add' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\ContactsController::addContactAction',    'page' => 1,  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/contacts/add',    ),  ),  4 =>   array (  ),),
         'mdo_agenda_moparman_contacts_category' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\ContactsController::showContactsAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/contacts/category',    ),  ),  4 =>   array (  ),),

@@ -77,6 +77,7 @@
   'SwiftmailerBundle:Collector:swiftmailer.html.twig' => '/var/www/html/agenda-moparman/vendor/symfony/swiftmailer-bundle/Resources/views/Collector/swiftmailer.html.twig',
   'DoctrineBundle:Collector:explain.html.twig' => '/var/www/html/agenda-moparman/vendor/doctrine/doctrine-bundle/Resources/views/Collector/explain.html.twig',
   'DoctrineBundle:Collector:db.html.twig' => '/var/www/html/agenda-moparman/vendor/doctrine/doctrine-bundle/Resources/views/Collector/db.html.twig',
+  'MDOAgendaMoparmanBundle:Default:dashboard.html.twig' => '/var/www/html/agenda-moparman/src/MDOAgendaMoparmanBundle/Resources/views/Default/dashboard.html.twig',
   'MDOAgendaMoparmanBundle:Form:fields.html.twig' => '/var/www/html/agenda-moparman/src/MDOAgendaMoparmanBundle/Resources/views/Form/fields.html.twig',
   'MDOAgendaMoparmanBundle:Categories:list.html.twig' => '/var/www/html/agenda-moparman/src/MDOAgendaMoparmanBundle/Resources/views/Categories/list.html.twig',
   'MDOAgendaMoparmanBundle:Categories:edit.html.twig' => '/var/www/html/agenda-moparman/src/MDOAgendaMoparmanBundle/Resources/views/Categories/edit.html.twig',

@@ -76,7 +76,7 @@ class __TwigTemplate_8ef92be5ffc2daf8b4cbbd535955abb445950ef727e92bbd7ecf08c0261
     ";
         } else {
             // line 19
-            echo "        No se encontraron contactos con este criterio
+            echo "        No se encontraron <strong>categorías</strong> con este criterio
     ";
         }
         // line 21
@@ -148,7 +148,7 @@ class __TwigTemplate_8ef92be5ffc2daf8b4cbbd535955abb445950ef727e92bbd7ecf08c0261
     ";
         } else {
             // line 46
-            echo "        No se encontraron contactos con este criterio
+            echo "        No se encontraron <strong>contactos</strong> con este criterio
     ";
         }
         // line 48
