@@ -34,7 +34,7 @@ class CategoriesController extends Controller
         if($request->query->get('success') !== null)
             $letter = 'success';
 
-        return $this->render('MDOAgendaMoparmanBundle:Categories:index.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'categories' => $contacts));
+        return $this->render('MDOAgendaMoparmanBundle:Categories:list.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'categories' => $contacts));
     }
 
     public function addCategoryAction(Request $request)
@@ -84,6 +84,19 @@ class CategoriesController extends Controller
         ));
 
     }
+
+    public function deleteCategoriesAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        foreach($request->request->get("delete_ids") as $delete_id){
+            $category = $this->getDoctrine()
+                ->getRepository('MDOAgendaMoparmanBundle:Category')
+                ->find($delete_id);
+            $em->remove($category);
+        }
+        $em->flush();
+        return $this->redirect('/categories?success');
+    }
+
 
 
 }

@@ -38,22 +38,33 @@ class __TwigTemplate_682e972bf7e526dea9f7ff715a827414e65e69d5a571e4be8ce5741170f
         // line 4
         echo "<form method=\"post\" id=\"categories-form\" action=\"/categories/delete\">
     <div class=\"large-12 columns\">
-        <table>
+        ";
+        // line 6
+        if (((isset($context["letter"]) ? $context["letter"] : $this->getContext($context, "letter")) == "success")) {
+            // line 7
+            echo "            <div class=\"alert-box success radius\" data-alert=\"\">
+                <strong>¡Éxito!</strong> las categorías se han eliminado correctamente.
+                <a class=\"close\" href=\"#\">×</a>
+            </div>
+        ";
+        }
+        // line 12
+        echo "        <table>
             <tbody>
         ";
-        // line 8
+        // line 14
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) ? $context["categories"] : $this->getContext($context, "categories")));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 9
+            // line 15
             echo "            <tr>
-                <td width=\"50\" class=\"text-center\"><input type=\"checkbox\" name=\"delete_ids\" value=\"";
-            // line 10
+                <td width=\"50\" class=\"text-center\"><input type=\"checkbox\" name=\"delete_ids[]\" value=\"";
+            // line 16
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
             echo "\" /></td>
                 <td width=\"50\" class=\"text-center\"><img src=\"http://placehold.it/48x48&amp;text=Foto\"></td>
                 <td width=\"1500\"><strong><a href=\"/contacts/category/";
-            // line 12
+            // line 18
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "name", array()), "html", null, true);
@@ -66,7 +77,7 @@ class __TwigTemplate_682e972bf7e526dea9f7ff715a827414e65e69d5a571e4be8ce5741170f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
+        // line 21
         echo "            </tbody>
         </table>
 
@@ -97,6 +108,6 @@ class __TwigTemplate_682e972bf7e526dea9f7ff715a827414e65e69d5a571e4be8ce5741170f
 
     public function getDebugInfo()
     {
-        return array (  70 => 15,  57 => 12,  52 => 10,  49 => 9,  45 => 8,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  81 => 21,  68 => 18,  63 => 16,  60 => 15,  56 => 14,  52 => 12,  45 => 7,  43 => 6,  39 => 4,  36 => 3,  11 => 1,);
     }
 }
