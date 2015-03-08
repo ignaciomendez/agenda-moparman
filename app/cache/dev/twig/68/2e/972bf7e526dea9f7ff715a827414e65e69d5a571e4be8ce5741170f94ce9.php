@@ -76,7 +76,7 @@ class __TwigTemplate_682e972bf7e526dea9f7ff715a827414e65e69d5a571e4be8ce5741170f
                     <a class=\"button tiny alert expand\" href=\"#\" onclick=\"\$('#categories-form').submit();\">Borrar Selección</a>
                 </div>
                 <div class=\"small-6 columns\">
-                    <a class=\"button tiny success expand\" href=\"/contacts/add\">Agregar Nueva Categoría</a>
+                    <a class=\"button tiny success expand\" href=\"/categories/add\">Agregar Nueva Categoría</a>
                 </div>
             </div>
         </div>

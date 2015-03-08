@@ -26,3 +26,7 @@ mdo_agenda_moparman_contacts_edit:
 mdo_agenda_moparman_categories:
     path:      /categories
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:index }
+
+mdo_agenda_moparman_categories_add:
+    path:      /categories/add
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:addCategory }

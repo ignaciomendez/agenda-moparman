@@ -199,7 +199,11 @@ class ContactsController extends Controller
             $used_categories_select[] = $used_category->getId();
         }
 
-        $breadcrumbs = array(array('link' => '#', 'section' => 'home'));
+        $breadcrumbs = array(
+            array('link' => '#', 'section' => 'home'),
+            array('link' => '/contacts', 'section' => 'Editar Contactos'),
+            array('link' => '/contacts/edit/'.$contact->getId(), 'section' => $contact->getName())
+        );
 
         $form = $this->createFormBuilder()
             ->add('name', 'text', array('label' => 'Nombre', 'data' => $contact->getName()))

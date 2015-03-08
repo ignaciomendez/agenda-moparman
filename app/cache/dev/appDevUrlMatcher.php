@@ -230,9 +230,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            // mdo_agenda_moparman_categories
-            if ($pathinfo === '/categories') {
-                return array (  '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\CategoriesController::indexAction',  '_route' => 'mdo_agenda_moparman_categories',);
+            if (0 === strpos($pathinfo, '/categories')) {
+                // mdo_agenda_moparman_categories
+                if ($pathinfo === '/categories') {
+                    return array (  '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\CategoriesController::indexAction',  '_route' => 'mdo_agenda_moparman_categories',);
+                }
+
+                // mdo_agenda_moparman_categories_add
+                if ($pathinfo === '/categories/add') {
+                    return array (  '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\CategoriesController::addCategoryAction',  '_route' => 'mdo_agenda_moparman_categories_add',);
+                }
+
             }
 
         }
