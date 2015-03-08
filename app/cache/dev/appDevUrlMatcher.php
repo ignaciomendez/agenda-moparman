@@ -255,6 +255,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // mdo_agenda_moparman_search
+        if (0 === strpos($pathinfo, '/search') && preg_match('#^/search/(?P<result>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'mdo_agenda_moparman_search')), array (  '_controller' => 'MDOAgendaMoparmanBundle\\Controller\\SearchController::indexAction',));
+        }
+
         // homepage
         if ($pathinfo === '/app/example') {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);

@@ -81,10 +81,10 @@ class __TwigTemplate_e4ef65b65689e8f616ba76c90eddbfd93132103ea41e7ace5fa4f371c26
                         ";
             // line 22
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute($context["contact"], "getCategories", array()));
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute($context["contact"], "getCategory", array()));
             foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
                 // line 23
-                echo "                            <span class=\"label secondary\"><a href=\"/category/";
+                echo "                            <span class=\"label secondary\"><a href=\"/contacts/category/";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "name", array()), "html", null, true);

@@ -137,13 +137,13 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
         <br/>
         <div class=\" small-2 columns\">
             <div class=\"row collapse\">
-                <div class=\"large-10 small-9 columns\">
+                <!--  <div class=\"large-10 small-9 columns\">
                     <form method=\"get\" action=\"/forum/posts\" accept-charset=\"UTF-8\"><div style=\"margin:0;padding:0;display:inline\"><input type=\"hidden\" value=\"✓\" name=\"utf8\"></div>
-                        <input type=\"text\" placeholder=\"Buscar\" name=\"search\" id=\"search\" class=\"search-bar\">
-                    </form></div>
-                <div class=\"large-2 small-3 columns\">
-                    <button type=\"submit\" name=\"button\" class=\"postfix search button expand\"><i class=\"general fi-magnifying-glass\"></i></button>
-                </div>
+                         <input type=\"text\" placeholder=\"Buscar\" name=\"search\" id=\"search\" class=\"search-bar\">
+                     </form></div>
+                 <div class=\"large-2 small-3 columns\">
+                     <button type=\"submit\" name=\"button\" class=\"postfix search button expand\"><i class=\"general fi-magnifying-glass\"></i></button>
+                 </div>-->
             </div>
         </div>
     </div>
@@ -190,7 +190,7 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
     <div class=\"row\">
         <hr/>
         <div class=\"large-12 columns text-right\">
-            <p>&copy; 2014, Sergio Milardovich</p>
+            <p>&copy; 2015, <a href=\"http://milardovich.com.ar/\">Sergio Milardovich</a> </p>
         </div>
     </div>
     </body>

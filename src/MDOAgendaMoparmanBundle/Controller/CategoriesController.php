@@ -27,14 +27,14 @@ class CategoriesController extends Controller
         );
 
         $em = $this->getDoctrine()->getManager();
-        $contacts = $em->getRepository('MDOAgendaMoparmanBundle:Category')->findAll();
+        $categories = $em->getRepository('MDOAgendaMoparmanBundle:Category')->findAll();
 
         $letter = false;
 
         if($request->query->get('success') !== null)
             $letter = 'success';
 
-        return $this->render('MDOAgendaMoparmanBundle:Categories:list.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'categories' => $contacts));
+        return $this->render('MDOAgendaMoparmanBundle:Categories:list.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'categories' => $categories));
     }
 
     public function addCategoryAction(Request $request)

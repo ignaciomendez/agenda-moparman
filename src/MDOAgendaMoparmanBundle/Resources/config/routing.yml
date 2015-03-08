@@ -35,7 +35,10 @@ mdo_agenda_moparman_categories_edit:
     path:      /categories/edit/{id}
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:editCategory }
 
-
 mdo_agenda_moparman_categories_delete:
     path:      /categories/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:deleteCategories }
+
+mdo_agenda_moparman_search:
+    path:      /search/{result}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Search:index }

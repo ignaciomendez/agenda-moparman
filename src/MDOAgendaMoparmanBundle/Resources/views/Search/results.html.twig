@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row"><div class="large-12 columns">
+    {% if categories != null %}
+        <h3>Resultados de Categorías</h3>
+        <table>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ category.id }}" /></td>
+                    <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
+                    <td width="1500"><strong><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></strong> <a href="/categories/edit/{{ category.id }}">[editar]</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        No se encontraron <strong>categorías</strong> con este criterio
+    {% endif %}
+    </div></div>
+    <div class="row"><div class="large-12 columns">
+    {% if contacts != null %}
+        <hr/>
+        <h3>Resultados de Contactos</h3>
+
+        <table>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ contact.id }}" /></td>
+                    <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
+                    <td width="200"><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></td>
+                    <td width="200">{{ contact.phone }}</td>
+                    <td width="200">{{ contact.city }}</td>
+                    <td width="200">
+                        {% for category in contact.getCategory %}
+                            <span class="label secondary"><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        No se encontraron <strong>contactos</strong> con este criterio
+    {% endif %}
+    </div></div>
+{% endblock %}
