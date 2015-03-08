@@ -22,3 +22,7 @@ mdo_agenda_moparman_contacts_single:
 mdo_agenda_moparman_contacts_edit:
     path:      /contact/edit/{id}
     defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:editContact }
+
+mdo_agenda_moparman_categories:
+    path:      /categories
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:index }

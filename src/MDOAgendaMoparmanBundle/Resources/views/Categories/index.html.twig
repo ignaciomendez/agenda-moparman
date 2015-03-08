@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<form method="post" id="categories-form" action="/categories/delete">
+    <div class="large-12 columns">
+        <table>
+            <tbody>
+        {% for category in categories %}
+            <tr>
+                <td width="50" class="text-center"><input type="checkbox" name="delete_ids" value="{{ category.id }}" /></td>
+                <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
+                <td width="1500"><strong><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></strong> <a href="/categories/edit/{{ category.id }}">[editar]</a></td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="small-4 columns right">
+            <div class="row">
+                <div class="small-6 columns">
+                    <a class="button tiny alert expand" href="#" onclick="$('#categories-form').submit();">Borrar Selección</a>
+                </div>
+                <div class="small-6 columns">
+                    <a class="button tiny success expand" href="/contacts/add">Agregar Nueva Categoría</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

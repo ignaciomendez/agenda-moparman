@@ -9,10 +9,11 @@
         <div class="row">
             <h5>Categorías</h5>
             <div class="categories">
-                {% for category in contact.categories %}
-                    {{ category.name }} <br/>
-                {% endfor %}
-
+                <ul>
+                    {% for category in contact.category %}
+                        <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
 
             </div>
         </div>

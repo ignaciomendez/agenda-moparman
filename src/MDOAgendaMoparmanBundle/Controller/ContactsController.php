@@ -21,8 +21,8 @@ class ContactsController extends Controller
                 'section' => 'Home'
             ),
             array (
-                'link' => '/contactos',
-                'section' => 'Contacts'
+                'link' => '/contacts',
+                'section' => 'Contactos'
             )
         );
 
@@ -51,15 +51,16 @@ class ContactsController extends Controller
         }
 
         $form = $this->createFormBuilder()
-            ->add('name', 'text')
-            ->add('email', 'email')
-            ->add('phone', 'text')
-            ->add('city', 'text')
-            ->add('notes', 'textarea')
+            ->add('name', 'text',array('label' => 'Nombre'))
+            ->add('email', 'email',array('label' => 'E-mail'))
+            ->add('phone', 'text',array('label' => 'Teléfono'))
+            ->add('city', 'text',array('label' => 'Ciudad'))
+            ->add('notes', 'textarea',array('label' => 'Notas'))
             ->add('categories', 'choice', array(
                 'choices'   => $categories_select,
                 'multiple'  => true,
                 'expanded' => true,
+                'label' => 'Categorías',
             ))
             ->add('save', 'submit', array('label' => 'Crear Contacto'))
             ->getForm();
@@ -137,7 +138,7 @@ class ContactsController extends Controller
             array('link' => '/contacts/category/'.$id, 'section' => $category->getName())
         );
 
-        return $this->render('MDOAgendaMoparmanBundle:Contacts:list.html.twig', array('breadcrumbs' => $breadcrumbs, 'contacts' => $contacts));
+        return $this->render('MDOAgendaMoparmanBundle:Contacts:list.html.twig', array('breadcrumbs' => $breadcrumbs, 'contacts' => $contacts, 'letter' => null));
 
     }
 
@@ -169,7 +170,7 @@ class ContactsController extends Controller
 
         $breadcrumbs = array(
             array('link' => '/', 'section' => 'Home'),
-            array('link' => '/contacts', 'section' => 'Contacts'),
+            array('link' => '/contacts', 'section' => 'Contactos'),
             array('link' => '/contact/$id', 'section' => $contact->getName())
         );
         return $this->render('MDOAgendaMoparmanBundle:Contacts:single.html.twig', array('breadcrumbs' => $breadcrumbs, 'contact' => $contact));
@@ -177,25 +178,65 @@ class ContactsController extends Controller
 
     public function editContactAction($id, Request $request){
         $letter = null;
+
+        if($request->query->get('success') !== null)
+            $letter = 'success';
+
         $contact = $this->getDoctrine()
             ->getRepository('MDOAgendaMoparmanBundle:Contact')
             ->findById($id)[0];
 
-        $categories_select = $contact->getCategories();
+        $categories = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Category')
+            ->findAll();
+
+        foreach($categories as $category){
+            $categories_select[$category->getId()] = $category->getName();
+        }
+
+        $used_categories = $contact->getCategory();
+        foreach($used_categories as $used_category){
+            $used_categories_select[] = $used_category->getId();
+        }
 
         $breadcrumbs = array(array('link' => '#', 'section' => 'home'));
 
-        $form = $this->createFormBuilder($contact)
-            ->add('name', 'text', array('label' => 'Nombre'))
-            ->add('email', 'email', array('label' => 'E-mail'))
-            ->add('phone', 'text', array('label' => 'Teléfono'))
-            ->add('city', 'text', array('label' => 'Ciudad'))
-            ->add('notes', 'textarea', array('label' => 'Notas'))
-            ->add('categories', 'collection', array('type' => new CategoryType()))
+        $form = $this->createFormBuilder()
+            ->add('name', 'text', array('label' => 'Nombre', 'data' => $contact->getName()))
+            ->add('email', 'email', array('label' => 'E-mail','data' => $contact->getEmail()))
+            ->add('phone', 'text', array('label' => 'Teléfono','data' => $contact->getPhone()))
+            ->add('city', 'text', array('label' => 'Ciudad','data' => $contact->getCity()))
+            ->add('notes', 'textarea', array('label' => 'Notas','data' => $contact->getNotes()))
+            ->add('categories', 'choice', array('data' => $used_categories_select, 'expanded' => true, 'multiple' => true, 'choices' => $categories_select))
             ->add('save', 'submit', array('label' => 'Editar Contacto'))
             ->getForm();
 
+
+
         $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $contact->setName($data['name']);
+            $contact->setCity($data['city']);
+            $contact->setEmail($data['email']);
+            $contact->setPhone($data['phone']);
+            $contact->setNotes($data['notes']);
+            $contact->setPhoto('');
+
+            foreach($categories_select as $category => $name)
+                $contact->removeCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Category')->find($category));
+
+            foreach($data['categories'] as $category)
+                $contact->addCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Category')->find($category));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            return $this->redirect('/contact/edit/'.$id.'?success');
+        }
 
         return $this->render('MDOAgendaMoparmanBundle:Contacts:edit.html.twig', array( 'form' => $form->createView(),'letter' => $letter,'breadcrumbs' => $breadcrumbs, 'contact' => $contact));
     }

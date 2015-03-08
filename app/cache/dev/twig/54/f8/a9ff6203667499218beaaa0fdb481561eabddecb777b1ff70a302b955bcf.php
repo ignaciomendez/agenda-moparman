@@ -44,22 +44,23 @@ class __TwigTemplate_54f8a9ff6203667499218beaaa0fdb481561eabddecb777b1ff70a302b9
         <div class=\"row\">
             <h5>Categorías</h5>
             <div class=\"categories\">
-                ";
-        // line 12
+                <ul>
+                    ";
+        // line 13
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "categories", array()));
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "category", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 13
-            echo "                    ";
+            // line 14
+            echo "                        <li>";
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "name", array()), "html", null, true);
-            echo " <br/>
-                ";
+            echo "</li>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
-        echo "
+        // line 16
+        echo "                </ul>
 
             </div>
         </div>
@@ -68,30 +69,30 @@ class __TwigTemplate_54f8a9ff6203667499218beaaa0fdb481561eabddecb777b1ff70a302b9
     <div class=\"large-10 columns\">
         <div class=\"row\">
             <h4> Información Personal <small><a href=\"/contact/edit/";
-        // line 23
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "id", array()), "html", null, true);
         echo "\">[editar]</a></small></h4>
             <div class=\"large-12 columns\">
                 <label><i class=\"general fi-torso\"></i>  ";
-        // line 25
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "name", array()), "html", null, true);
         echo " </label>
             </div>
             <div class=\"large-12 columns\">
                 <label><i class=\"general fi-marker\"></i> ";
-        // line 28
+        // line 29
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "city", array()), "html", null, true);
         echo "</label>
             </div>
             <div class=\"large-12 columns\">
                 <label><i class=\"general fi-telephone\"></i> ";
-        // line 31
+        // line 32
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "phone", array()), "html", null, true);
         echo " </label>
             </div>
             <div class=\"large-12 columns\">
                 <label><i class=\"general fi-mail\"></i> ";
-        // line 34
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "email", array()), "html", null, true);
         echo " </label>
             </div>
@@ -99,7 +100,7 @@ class __TwigTemplate_54f8a9ff6203667499218beaaa0fdb481561eabddecb777b1ff70a302b9
                 <label>Observaciones:
                 </label>
                 ";
-        // line 39
+        // line 40
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "notes", array()), "html", null, true);
         echo "
             </div>
@@ -126,6 +127,6 @@ class __TwigTemplate_54f8a9ff6203667499218beaaa0fdb481561eabddecb777b1ff70a302b9
 
     public function getDebugInfo()
     {
-        return array (  103 => 39,  95 => 34,  89 => 31,  83 => 28,  77 => 25,  72 => 23,  62 => 15,  53 => 13,  49 => 12,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  104 => 40,  96 => 35,  90 => 32,  84 => 29,  78 => 26,  73 => 24,  63 => 16,  54 => 14,  50 => 13,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

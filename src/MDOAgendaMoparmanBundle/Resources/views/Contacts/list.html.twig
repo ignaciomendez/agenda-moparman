@@ -19,8 +19,8 @@
                     <td width="200">{{ contact.phone }}</td>
                     <td width="200">{{ contact.city }}</td>
                     <td width="200">
-                        {% for category in contact.getCategories %}
-                            <span class="label secondary"><a href="/category/{{ category.id }}">{{ category.name }}</a></span>
+                        {% for category in contact.getCategory %}
+                            <span class="label secondary"><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></span>
                         {% endfor %}
                     </td>
                 </tr>

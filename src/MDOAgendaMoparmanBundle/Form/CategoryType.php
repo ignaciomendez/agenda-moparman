@@ -1,5 +1,5 @@
 <?php
-namespace MDOAgendaMoparmanBundle\Form\Type;
+namespace MDOAgendaMoparmanBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
@@ -10,18 +10,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class CategoryType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
+        $this->add('categories');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MDOAgenciaMoparmanBundle\Entity\Category',
+            'data_class' => 'MDOAgenciaMoparmanBundle\\Entity\\Category',
         ));
     }
 
     public function getName()
     {
-        return 'category';
+        return 'categories';
     }
 }
