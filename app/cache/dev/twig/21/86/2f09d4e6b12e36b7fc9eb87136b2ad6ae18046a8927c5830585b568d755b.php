@@ -93,6 +93,12 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
             echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
             echo "\" />
         ";
+            // asset "df9bcde_1"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_df9bcde_1") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/df9bcde_part_1_styles_2.css");
+            echo "        <link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\" />
+        ";
         } else {
             // asset "df9bcde"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_df9bcde") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/df9bcde.css");
@@ -147,23 +153,47 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
             </div>
         </div>
     </div>
-
     <div class=\"row\">
-        <dl class=\"sub-nav\">
-            <dd><a href=\"/categories\">Categorías</a></dd>
-            <dd><a href=\"/contacts\">Contactos</a></dd>
-        </dl>
+        <nav role=\"navigation\" data-topbar=\"\" class=\"top-bar\">
+            <ul class=\"title-area\">
+                <!-- Title Area -->
+                <li class=\"name\">
+
+                </li>
+                <!-- Remove the class \"menu-icon\" to get rid of menu icon. Take out \"Menu\" to just have icon alone -->
+                <li class=\"toggle-topbar menu-icon\"><a href=\"\"><span>Menu</span></a></li>
+            </ul>
+
+
+            <section class=\"top-bar-section\">
+                <ul class=\"left\">
+                    <li><a href=\"/\">Inicio</a></li>
+                    <li class=\"has-dropdown not-click\"><a href=\"/contacts\">Contactos</a>
+                        <ul class=\"dropdown\">
+                            <li><a href=\"/contacts/add\">Nuevo Contacto</a></li>
+                            <li><a href=\"/categories\">Categorías</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=\"#\">Vencimientos</a></li>
+
+                </ul>
+                <!-- Right Nav Section -->
+                <ul class=\"right\">
+
+                    <!--<li><a href=\"#\">Item 2</a></li>-->
+                </ul>
+            </section></nav> <br/>
     </div>
 
         <div class=\"row\">
             <div class=\"large-12 medium-12 columns\">
                 <ul class=\"breadcrumbs\">
                     ";
-        // line 55
+        // line 79
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["breadcrumbs"]) ? $context["breadcrumbs"] : $this->getContext($context, "breadcrumbs")));
         foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
-            // line 56
+            // line 80
             echo "                        <li><a href=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "link", array()), "html", null, true);
             echo "\">";
@@ -174,16 +204,16 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 58
+        // line 82
         echo "                </ul>
             </div>
         </div>
         <div class=\"row\">
             <div class=\"large-12 columns\">
                 ";
-        // line 63
+        // line 87
         $this->displayBlock('body', $context, $blocks);
-        // line 64
+        // line 88
         echo "            </div>
         </div>
 
@@ -215,7 +245,7 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
     {
     }
 
-    // line 63
+    // line 87
     public function block_body($context, array $blocks = array())
     {
     }
@@ -232,6 +262,6 @@ class __TwigTemplate_21862f09d4e6b12e36b7fc9eb87136b2ad6ae18046a8927c5830585b568
 
     public function getDebugInfo()
     {
-        return array (  219 => 63,  214 => 7,  209 => 6,  203 => 5,  187 => 64,  185 => 63,  178 => 58,  167 => 56,  163 => 55,  136 => 30,  122 => 28,  118 => 27,  106 => 17,  92 => 15,  87 => 14,  43 => 12,  38 => 8,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  249 => 87,  244 => 7,  239 => 6,  233 => 5,  217 => 88,  215 => 87,  208 => 82,  197 => 80,  193 => 79,  142 => 30,  128 => 28,  124 => 27,  112 => 17,  92 => 15,  87 => 14,  43 => 12,  38 => 8,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

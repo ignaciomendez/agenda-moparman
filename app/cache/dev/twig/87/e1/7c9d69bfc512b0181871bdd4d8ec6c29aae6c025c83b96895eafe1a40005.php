@@ -62,13 +62,18 @@ class __TwigTemplate_87e17c9d69bfc512b0181871bdd4d8ec6c29aae6c025c83b96895eafe1a
             // line 16
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
             echo "\" /></td>
-                <td width=\"50\" class=\"text-center\"><img src=\"http://placehold.it/48x48&amp;text=Foto\"></td>
+                <td width=\"50\" class=\"text-center\"><img class=\"placeholder\" src=\"http://placehold.it/64x64/E0E0E0/007095&text=";
+            // line 17
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["category"], "name", array()), ""), 0, array(), "array"), "html", null, true);
+            echo "\"></td>
                 <td width=\"1500\"><strong><a href=\"/contacts/category/";
             // line 18
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "name", array()), "html", null, true);
-            echo "</a></strong> <a href=\"/categories/edit/";
+            echo "</a> </strong> (";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["category"], "getContacts", array()), "count", array()), "html", null, true);
+            echo ") <a href=\"/categories/edit/";
             echo twig_escape_filter($this->env, $this->getAttribute($context["category"], "id", array()), "html", null, true);
             echo "\">[editar]</a></td>
             </tr>
@@ -108,6 +113,6 @@ class __TwigTemplate_87e17c9d69bfc512b0181871bdd4d8ec6c29aae6c025c83b96895eafe1a
 
     public function getDebugInfo()
     {
-        return array (  81 => 21,  68 => 18,  63 => 16,  60 => 15,  56 => 14,  52 => 12,  45 => 7,  43 => 6,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  86 => 21,  71 => 18,  67 => 17,  63 => 16,  60 => 15,  56 => 14,  52 => 12,  45 => 7,  43 => 6,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

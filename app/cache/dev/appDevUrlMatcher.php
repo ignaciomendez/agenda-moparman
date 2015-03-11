@@ -78,9 +78,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'assetic.controller:render',  'name' => 'df9bcde',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_df9bcde',);
             }
 
-            // _assetic_df9bcde_0
-            if ($pathinfo === '/css/df9bcde_part_1_foundation.min_1.css') {
-                return array (  '_controller' => 'assetic.controller:render',  'name' => 'df9bcde',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_df9bcde_0',);
+            if (0 === strpos($pathinfo, '/css/df9bcde_part_1_')) {
+                // _assetic_df9bcde_0
+                if ($pathinfo === '/css/df9bcde_part_1_foundation.min_1.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'df9bcde',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_df9bcde_0',);
+                }
+
+                // _assetic_df9bcde_1
+                if ($pathinfo === '/css/df9bcde_part_1_styles_2.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'df9bcde',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_df9bcde_1',);
+                }
+
             }
 
         }

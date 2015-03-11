@@ -62,7 +62,10 @@ class __TwigTemplate_e4ef65b65689e8f616ba76c90eddbfd93132103ea41e7ace5fa4f371c26
             // line 16
             echo twig_escape_filter($this->env, $this->getAttribute($context["contact"], "id", array()), "html", null, true);
             echo "\" /></td>
-                    <td width=\"50\" class=\"text-center\"><img src=\"http://placehold.it/48x48&amp;text=Foto\"></td>
+                    <td width=\"50\" class=\"text-center\"><img class=\"placeholder\" src=\"http://placehold.it/64x64/E0E0E0/007095&text=";
+            // line 17
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["contact"], "name", array()), ""), 0, array(), "array"), "html", null, true);
+            echo "\"></td>
                     <td width=\"200\"><a href=\"/contact/";
             // line 18
             echo twig_escape_filter($this->env, $this->getAttribute($context["contact"], "id", array()), "html", null, true);
@@ -135,6 +138,6 @@ class __TwigTemplate_e4ef65b65689e8f616ba76c90eddbfd93132103ea41e7ace5fa4f371c26
 
     public function getDebugInfo()
     {
-        return array (  106 => 28,  98 => 25,  87 => 23,  83 => 22,  78 => 20,  74 => 19,  68 => 18,  63 => 16,  60 => 15,  56 => 14,  52 => 12,  45 => 7,  43 => 6,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  109 => 28,  101 => 25,  90 => 23,  86 => 22,  81 => 20,  77 => 19,  71 => 18,  67 => 17,  63 => 16,  60 => 15,  56 => 14,  52 => 12,  45 => 7,  43 => 6,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

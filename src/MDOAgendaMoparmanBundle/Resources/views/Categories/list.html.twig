@@ -14,8 +14,8 @@
         {% for category in categories %}
             <tr>
                 <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ category.id }}" /></td>
-                <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
-                <td width="1500"><strong><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></strong> <a href="/categories/edit/{{ category.id }}">[editar]</a></td>
+                <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ category.name | split('')[0] }}"></td>
+                <td width="1500"><strong><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a> </strong> ({{ category.getContacts.count }}) <a href="/categories/edit/{{ category.id }}">[editar]</a></td>
             </tr>
         {% endfor %}
             </tbody>

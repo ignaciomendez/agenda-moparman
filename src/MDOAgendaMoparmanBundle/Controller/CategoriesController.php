@@ -3,7 +3,7 @@
 namespace MDOAgendaMoparmanBundle\Controller;
 
 //use MyProject\Proxies\__CG__\OtherProject\Proxies\__CG__\stdClass;
-use MDOAgendaMoparmanBundle\Form\CategoryType;
+//use MDOAgendaMoparmanBundle\Form\CategoryType;
 use MDOAgendaMoparmanBundle\Entity\Contact;
 use MDOAgendaMoparmanBundle\Entity\Category;
 use Symfony\Component\Form\Forms;
