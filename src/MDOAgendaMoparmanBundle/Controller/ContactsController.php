@@ -51,11 +51,12 @@ class ContactsController extends Controller
         }
 
         $form = $this->createFormBuilder()
-            ->add('name', 'text',array('label' => 'Nombre'))
-            ->add('email', 'email',array('label' => 'E-mail'))
-            ->add('phone', 'text',array('label' => 'Teléfono'))
-            ->add('city', 'text',array('label' => 'Ciudad'))
-            ->add('notes', 'textarea',array('label' => 'Notas'))
+            ->add('name', 'text',array('label' => 'Nombre','required' => false))
+            ->add('email', 'email',array('label' => 'E-mail','required' => false))
+            ->add('phone', 'text',array('label' => 'Teléfono','required' => false))
+            ->add('city', 'text',array('label' => 'Ciudad','required' => false))
+            ->add('address', 'text',array('label' => 'Dirección','required' => false))
+            ->add('notes', 'textarea',array('label' => 'Notas','required' => false))
             ->add('categories', 'choice', array(
                 'choices'   => $categories_select,
                 'multiple'  => true,
@@ -77,6 +78,7 @@ class ContactsController extends Controller
 
             $contact = new Contact();
             $contact->setName($data['name']);
+            $contact->setAddress($data['address']);
             $contact->setCity($data['city']);
             $contact->setEmail($data['email']);
             $contact->setPhone($data['phone']);
@@ -206,11 +208,12 @@ class ContactsController extends Controller
         );
 
         $form = $this->createFormBuilder()
-            ->add('name', 'text', array('label' => 'Nombre', 'data' => $contact->getName()))
-            ->add('email', 'email', array('label' => 'E-mail','data' => $contact->getEmail()))
-            ->add('phone', 'text', array('label' => 'Teléfono','data' => $contact->getPhone()))
-            ->add('city', 'text', array('label' => 'Ciudad','data' => $contact->getCity()))
-            ->add('notes', 'textarea', array('label' => 'Notas','data' => $contact->getNotes()))
+            ->add('name', 'text', array('label' => 'Nombre', 'data' => $contact->getName(),'required' => false))
+            ->add('email', 'email', array('label' => 'E-mail','data' => $contact->getEmail(),'required' => false))
+            ->add('phone', 'text', array('label' => 'Teléfono','data' => $contact->getPhone(),'required' => false))
+            ->add('city', 'text', array('label' => 'Ciudad','data' => $contact->getCity(),'required' => false))
+            ->add('address', 'text', array('label' => 'Dirección','data' => $contact->getAddress(),'required' => false))
+            ->add('notes', 'textarea', array('label' => 'Notas','data' => $contact->getNotes(),'required' => false))
             ->add('categories', 'choice', array('data' => $used_categories_select, 'expanded' => true, 'multiple' => true, 'choices' => $categories_select))
             ->add('save', 'submit', array('label' => 'Editar Contacto'))
             ->getForm();
@@ -223,6 +226,7 @@ class ContactsController extends Controller
             $data = $form->getData();
 
             $contact->setName($data['name']);
+            $contact->setAddress($data['address']);
             $contact->setCity($data['city']);
             $contact->setEmail($data['email']);
             $contact->setPhone($data['phone']);

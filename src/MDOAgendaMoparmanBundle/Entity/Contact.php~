@@ -37,6 +37,11 @@ class Contact
     /**
      * @var string
      */
+    private $address;
+
+    /**
+     * @var string
+     */
     private $notes;
 
     /**
@@ -128,6 +133,29 @@ class Contact
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return Contact
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**

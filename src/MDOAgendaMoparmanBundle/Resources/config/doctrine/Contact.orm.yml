@@ -15,12 +15,19 @@ MDOAgendaMoparmanBundle\Entity\Contact:
         email:
             type: string
             length: 255
+            nullable: true
         phone:
             type: string
             length: 255
+            nullable: true
+        address:
+            type: string
+            length: 255
+            nullable: true
         city:
             type: string
             length: 255
+            nullable: true
         notes:
             type: text
         photo:
