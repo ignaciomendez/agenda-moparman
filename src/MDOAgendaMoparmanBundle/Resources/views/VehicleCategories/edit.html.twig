@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if letter == 'success' %}
+        <div class="alert-box success radius" data-alert="">
+            <strong>¡Éxito!</strong> la marca se ha editado correctamente.
+            <a class="close" href="#">×</a>
+        </div>
+    {% endif %}
+    <form action="#" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+    </form>
+{% endblock %}

@@ -31,20 +31,20 @@ twig:
 
 # Assetic Configuration
 assetic:
-    debug:          "%kernel.debug%"
-    read_from: %kernel.root_dir%/web
-   #use_controller: false
-    bundles:        [ ]
-    #java: /usr/bin/java
+    assets:
+        javascripts:
+            inputs:
+                - '@MDOAgendaMoparmanBundle/Resources/public/js/*'
+    java: /usr/bin/java
     filters:
-        compass:
-            require: ['zurb-foundation']
-            apply_to: ".(scss|sass)$"
+       # compass:
+           # require: ['zurb-foundation']
+          #  apply_to: ".(scss|sass)$"
         cssrewrite: ~
         #closure:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
 # Doctrine Configuration
 doctrine:

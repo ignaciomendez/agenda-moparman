@@ -36,7 +36,10 @@ class __TwigTemplate_1aca73746ed8abf1e5fa8c89bc106a5f64b3caaae3a4b0ffa6d99bec81d
     public function block_body($context, array $blocks = array())
     {
         // line 4
-        echo "Bienvenido
+        echo "<div class=\"row\">
+    <div class=\"large-6 columns\" style=\"border-right:1px solid #CECECE;\">Categorías: 38</div>
+    <div class=\"large-6 columns\">Contactos: 100</div>
+</div>
 ";
     }
 

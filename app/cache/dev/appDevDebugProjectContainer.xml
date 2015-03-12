@@ -268,16 +268,7 @@
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
-    <parameter key="security.role_hierarchy.roles" type="collection">
-      <parameter key="ROLE_ADMIN" type="collection">
-        <parameter>ROLE_USER</parameter>
-      </parameter>
-      <parameter key="ROLE_SUPER_ADMIN" type="collection">
-        <parameter>ROLE_USER</parameter>
-        <parameter>ROLE_ADMIN</parameter>
-        <parameter>ROLE_ALLOWED_TO_SWITCH</parameter>
-      </parameter>
-    </parameter>
+    <parameter key="security.role_hierarchy.roles" type="collection"/>
     <parameter key="twig.class">Twig_Environment</parameter>
     <parameter key="twig.loader.filesystem.class">Symfony\Bundle\TwigBundle\Loader\FilesystemLoader</parameter>
     <parameter key="twig.loader.chain.class">Twig_Loader_Chain</parameter>
@@ -411,7 +402,21 @@
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
     <parameter key="assetic.cache_dir">/var/www/html/agenda-moparman/app/cache/dev/assetic</parameter>
-    <parameter key="assetic.bundles" type="collection"/>
+    <parameter key="assetic.bundles" type="collection">
+      <parameter>FrameworkBundle</parameter>
+      <parameter>SecurityBundle</parameter>
+      <parameter>TwigBundle</parameter>
+      <parameter>MonologBundle</parameter>
+      <parameter>SwiftmailerBundle</parameter>
+      <parameter>AsseticBundle</parameter>
+      <parameter>DoctrineBundle</parameter>
+      <parameter>SensioFrameworkExtraBundle</parameter>
+      <parameter>AppBundle</parameter>
+      <parameter>MDOAgendaMoparmanBundle</parameter>
+      <parameter>WebProfilerBundle</parameter>
+      <parameter>SensioDistributionBundle</parameter>
+      <parameter>SensioGeneratorBundle</parameter>
+    </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
     <parameter key="assetic.helper.dynamic.class">Symfony\Bundle\AsseticBundle\Templating\DynamicAsseticHelper</parameter>
@@ -420,43 +425,21 @@
     <parameter key="assetic.debug">true</parameter>
     <parameter key="assetic.use_controller">true</parameter>
     <parameter key="assetic.enable_profiler">false</parameter>
-    <parameter key="assetic.read_from">/var/www/html/agenda-moparman/app/web</parameter>
-    <parameter key="assetic.write_to">/var/www/html/agenda-moparman/app/web</parameter>
+    <parameter key="assetic.read_from">/var/www/html/agenda-moparman/app/../web</parameter>
+    <parameter key="assetic.write_to">/var/www/html/agenda-moparman/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
-    <parameter key="assetic.filter.compass.class">Assetic\Filter\CompassFilter</parameter>
-    <parameter key="assetic.filter.compass.bin">/usr/bin/compass</parameter>
-    <parameter key="assetic.filter.compass.timeout">null</parameter>
-    <parameter key="assetic.filter.compass.debug">false</parameter>
-    <parameter key="assetic.filter.compass.boring">true</parameter>
-    <parameter key="assetic.filter.compass.no_line_comments">false</parameter>
-    <parameter key="assetic.filter.compass.style">null</parameter>
-    <parameter key="assetic.filter.compass.images_dir">null</parameter>
-    <parameter key="assetic.filter.compass.fonts_dir">null</parameter>
-    <parameter key="assetic.filter.compass.relative_assets">false</parameter>
-    <parameter key="assetic.filter.compass.javascripts_dir">null</parameter>
-    <parameter key="assetic.filter.compass.http_path">null</parameter>
-    <parameter key="assetic.filter.compass.http_images_path">null</parameter>
-    <parameter key="assetic.filter.compass.http_fonts_path">null</parameter>
-    <parameter key="assetic.filter.compass.http_generated_images_path">null</parameter>
-    <parameter key="assetic.filter.compass.generated_images_path">null</parameter>
-    <parameter key="assetic.filter.compass.http_javascripts_path">null</parameter>
-    <parameter key="assetic.filter.compass.plugins" type="collection"/>
-    <parameter key="assetic.filter.compass.load_paths" type="collection"/>
-    <parameter key="assetic.filter.compass.home_env">true</parameter>
-    <parameter key="assetic.filter.compass.scss">null</parameter>
-    <parameter key="assetic.filter.compass.unix_newlines">null</parameter>
-    <parameter key="assetic.filter.compass.no_cache">null</parameter>
-    <parameter key="assetic.filter.compass.force">null</parameter>
-    <parameter key="assetic.filter.compass.quiet">null</parameter>
-    <parameter key="assetic.filter.compass.cache_location">/var/www/html/agenda-moparman/app/cache/dev</parameter>
-    <parameter key="assetic.filter.compass.require" type="collection">
-      <parameter>zurb-foundation</parameter>
-    </parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
+    <parameter key="assetic.filter.yui_css.class">Assetic\Filter\Yui\CssCompressorFilter</parameter>
+    <parameter key="assetic.filter.yui_css.java">/usr/bin/java</parameter>
+    <parameter key="assetic.filter.yui_css.jar">/var/www/html/agenda-moparman/app/Resources/java/yuicompressor-2.4.7.jar</parameter>
+    <parameter key="assetic.filter.yui_css.charset">UTF-8</parameter>
+    <parameter key="assetic.filter.yui_css.stacksize">null</parameter>
+    <parameter key="assetic.filter.yui_css.timeout">null</parameter>
+    <parameter key="assetic.filter.yui_css.linebreak">null</parameter>
     <parameter key="assetic.twig_extension.functions" type="collection"/>
     <parameter key="assetic.controller.class">Symfony\Bundle\AsseticBundle\Controller\AsseticController</parameter>
     <parameter key="assetic.routing_loader.class">Symfony\Bundle\AsseticBundle\Routing\AsseticLoader</parameter>
@@ -1642,9 +1625,14 @@
             <argument type="service">
               <service class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
             </argument>
-            <argument>secured_area</argument>
+            <argument>default</argument>
             <argument type="service" id="security.encoder_factory"/>
             <argument>true</argument>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+            <argument>550042c848771</argument>
           </service>
         </argument>
       </argument>
@@ -1677,16 +1665,7 @@
       <argument>true</argument>
     </service>
     <service id="security.role_hierarchy" class="Symfony\Component\Security\Core\Role\RoleHierarchy" public="false">
-      <argument type="collection">
-        <argument key="ROLE_ADMIN" type="collection">
-          <argument>ROLE_USER</argument>
-        </argument>
-        <argument key="ROLE_SUPER_ADMIN" type="collection">
-          <argument>ROLE_USER</argument>
-          <argument>ROLE_ADMIN</argument>
-          <argument>ROLE_ALLOWED_TO_SWITCH</argument>
-        </argument>
-      </argument>
+      <argument type="collection"/>
     </service>
     <service id="security.firewall" class="Symfony\Component\Security\Http\Firewall">
       <tag name="kernel.event_subscriber"/>
@@ -1699,16 +1678,7 @@
                 <argument>^/(_(profiler|wdt)|css|images|js)/</argument>
               </service>
             </argument>
-            <argument key="security.firewall.map.context.login" type="service">
-              <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                <argument>^/demo/secured/login$</argument>
-              </service>
-            </argument>
-            <argument key="security.firewall.map.context.secured_area" type="service">
-              <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                <argument>^/demo/secured/</argument>
-              </service>
-            </argument>
+            <argument key="security.firewall.map.context.default">null</argument>
           </argument>
         </service>
       </argument>
@@ -1731,13 +1701,6 @@
       <tag name="templating.helper" alias="logout_url"/>
       <argument type="service" id="service_container"/>
       <argument type="service" id="router"/>
-      <call method="registerListener">
-        <argument>secured_area</argument>
-        <argument>_demo_logout</argument>
-        <argument>logout</argument>
-        <argument>_csrf_token</argument>
-        <argument>null</argument>
-      </call>
     </service>
     <service id="templating.helper.security" class="Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper">
       <tag name="templating.helper" alias="security"/>
@@ -1747,8 +1710,8 @@
       <call method="createUser">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\User\User" public="false">
-            <argument>user</argument>
-            <argument>userpass</argument>
+            <argument>ryan</argument>
+            <argument>admin</argument>
             <argument type="collection">
               <argument>ROLE_USER</argument>
             </argument>
@@ -1759,7 +1722,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Core\User\User" public="false">
             <argument>admin</argument>
-            <argument>adminpass</argument>
+            <argument>admin</argument>
             <argument type="collection">
               <argument>ROLE_ADMIN</argument>
             </argument>
@@ -1771,11 +1734,7 @@
       <argument type="collection"/>
       <argument>null</argument>
     </service>
-    <service id="security.firewall.map.context.login" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
-      <argument type="collection"/>
-      <argument>null</argument>
-    </service>
-    <service id="security.firewall.map.context.secured_area" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+    <service id="security.firewall.map.context.default" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
@@ -1785,7 +1744,7 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/demo/secured/hello/admin/</argument>
+                      <argument>^/*</argument>
                     </service>
                   </argument>
                   <argument type="collection">
@@ -1810,110 +1769,29 @@
             <argument type="collection">
               <argument type="service" id="security.user.provider.concrete.in_memory"/>
             </argument>
-            <argument>secured_area</argument>
+            <argument>default</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="event_dispatcher" on-invalid="null"/>
           </service>
         </argument>
         <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\LogoutListener" public="false">
-            <argument type="service" id="security.context"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                <argument type="service" id="router" on-invalid="null"/>
-                <argument type="service" id="router" on-invalid="null"/>
-              </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument>_demo</argument>
-              </service>
-            </argument>
-            <argument type="collection">
-              <argument key="csrf_parameter">_csrf_token</argument>
-              <argument key="intention">logout</argument>
-              <argument key="logout_path">_demo_logout</argument>
-            </argument>
-            <call method="addHandler">
-              <argument type="service">
-                <service class="Symfony\Component\Security\Http\Logout\SessionLogoutHandler" public="false"/>
-              </argument>
-            </call>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
-            <tag name="security.remember_me_aware" id="secured_area" provider="security.user.provider.concrete.in_memory"/>
+          <service class="Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
             <argument type="service" id="security.authentication.manager"/>
+            <argument>default</argument>
             <argument type="service">
-              <service class="Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy" public="false">
-                <argument>migrate</argument>
+              <service class="Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint" public="false">
+                <argument>Secured Area</argument>
               </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                <argument type="service" id="router" on-invalid="null"/>
-                <argument type="service" id="router" on-invalid="null"/>
-              </service>
-            </argument>
-            <argument>secured_area</argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler" public="false">
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument type="collection">
-                  <argument key="login_path">_demo_login</argument>
-                  <argument key="always_use_default_target_path">false</argument>
-                  <argument key="default_target_path">/</argument>
-                  <argument key="target_path_parameter">_target_path</argument>
-                  <argument key="use_referer">false</argument>
-                </argument>
-                <call method="setProviderKey">
-                  <argument>secured_area</argument>
-                </call>
-              </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler" public="false">
-                <argument type="service" id="http_kernel"/>
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument type="collection">
-                  <argument key="login_path">_demo_login</argument>
-                  <argument key="failure_path">null</argument>
-                  <argument key="failure_forward">false</argument>
-                  <argument key="failure_path_parameter">_failure_path</argument>
-                </argument>
-                <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-              </service>
-            </argument>
-            <argument type="collection">
-              <argument key="check_path">_security_check</argument>
-              <argument key="use_forward">false</argument>
-              <argument key="require_previous_session">true</argument>
-              <argument key="username_parameter">_username</argument>
-              <argument key="password_parameter">_password</argument>
-              <argument key="csrf_parameter">_csrf_token</argument>
-              <argument key="intention">authenticate</argument>
-              <argument key="post_only">true</argument>
             </argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-            <argument type="service" id="event_dispatcher" on-invalid="null"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
+            <argument type="service" id="security.context"/>
+            <argument>550042c848771</argument>
+            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
         <argument type="service">
@@ -1926,7 +1804,7 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/demo/secured/hello/admin/</argument>
+                      <argument>^/*</argument>
                     </service>
                   </argument>
                   <argument type="collection">
@@ -1950,18 +1828,10 @@
               <argument type="service" id="router" on-invalid="null"/>
             </service>
           </argument>
-          <argument>secured_area</argument>
+          <argument>default</argument>
           <argument type="service">
-            <service class="Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint" public="false">
-              <argument type="service" id="http_kernel"/>
-              <argument type="service">
-                <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                  <argument type="service" id="router" on-invalid="null"/>
-                  <argument type="service" id="router" on-invalid="null"/>
-                </service>
-              </argument>
-              <argument>_demo_login</argument>
-              <argument>false</argument>
+            <service class="Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint" public="false">
+              <argument>Secured Area</argument>
             </service>
           </argument>
           <argument>null</argument>
@@ -2093,7 +1963,21 @@
             <argument type="service" id="templating.name_parser"/>
             <argument>true</argument>
             <argument type="collection"/>
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument>FrameworkBundle</argument>
+              <argument>SecurityBundle</argument>
+              <argument>TwigBundle</argument>
+              <argument>MonologBundle</argument>
+              <argument>SwiftmailerBundle</argument>
+              <argument>AsseticBundle</argument>
+              <argument>DoctrineBundle</argument>
+              <argument>SensioFrameworkExtraBundle</argument>
+              <argument>AppBundle</argument>
+              <argument>MDOAgendaMoparmanBundle</argument>
+              <argument>WebProfilerBundle</argument>
+              <argument>SensioDistributionBundle</argument>
+              <argument>SensioGeneratorBundle</argument>
+            </argument>
             <argument type="service">
               <service class="Symfony\Bundle\AsseticBundle\DefaultValueSupplier" public="false">
                 <argument type="service" id="service_container"/>
@@ -2159,13 +2043,18 @@
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
       <argument type="collection">
-        <argument key="compass">assetic.filter.compass</argument>
         <argument key="cssrewrite">assetic.filter.cssrewrite</argument>
+        <argument key="yui_css">assetic.filter.yui_css</argument>
       </argument>
     </service>
     <service id="assetic.asset_manager" class="Assetic\Factory\LazyAssetManager">
       <argument type="service" id="assetic.asset_factory"/>
       <argument type="collection">
+        <argument key="config" type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader" public="false">
+            <tag name="assetic.formula_loader" alias="config"/>
+          </service>
+        </argument>
         <argument key="twig" type="service">
           <service class="Assetic\Factory\Loader\CachedFormulaLoader" public="false">
             <tag name="assetic.formula_loader" alias="twig"/>
@@ -2189,6 +2078,374 @@
       </argument>
       <call method="addResource">
         <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource" public="false">
+            <tag name="assetic.formula_resource" loader="config"/>
+            <argument type="collection">
+              <argument key="javascripts" type="collection">
+                <argument type="collection">
+                  <argument>@MDOAgendaMoparmanBundle/Resources/public/js/*</argument>
+                </argument>
+                <argument type="collection"/>
+                <argument type="collection"/>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>config</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>FrameworkBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/FrameworkBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>FrameworkBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SecurityBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/SecurityBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SecurityBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>TwigBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/TwigBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>TwigBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>MonologBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/MonologBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>MonologBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/monolog-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SwiftmailerBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/SwiftmailerBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SwiftmailerBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/swiftmailer-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>AsseticBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/AsseticBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>AsseticBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/assetic-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>DoctrineBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/DoctrineBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>DoctrineBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/doctrine/doctrine-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioFrameworkExtraBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/SensioFrameworkExtraBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioFrameworkExtraBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>AppBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/AppBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>AppBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/src/AppBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>MDOAgendaMoparmanBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/MDOAgendaMoparmanBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>MDOAgendaMoparmanBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/src/MDOAgendaMoparmanBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>WebProfilerBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/WebProfilerBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>WebProfilerBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioDistributionBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/SensioDistributionBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioDistributionBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioGeneratorBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/app/Resources/SensioGeneratorBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>SensioGeneratorBundle</argument>
+                  <argument>/var/www/html/agenda-moparman/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
             <tag name="assetic.templating.twig"/>
             <tag name="assetic.formula_resource" loader="twig"/>
@@ -2207,17 +2464,8 @@
       <argument type="service">
         <service class="Symfony\Component\DependencyInjection\ParameterBag\ParameterBag" factory-method="getParameterBag" factory-service="service_container" public="false"/>
       </argument>
-      <argument>/var/www/html/agenda-moparman/app/web</argument>
+      <argument>/var/www/html/agenda-moparman/app/../web</argument>
       <argument>true</argument>
-      <call method="addWorker">
-        <argument type="service">
-          <service class="Assetic\Factory\Worker\EnsureFilterWorker" public="false">
-            <tag name="assetic.factory_worker"/>
-            <argument>/.(scss|sass)$/</argument>
-            <argument type="service" id="assetic.filter.compass"/>
-          </service>
-        </argument>
-      </call>
       <call method="addWorker">
         <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker" public="false">
@@ -2226,85 +2474,25 @@
         </argument>
       </call>
     </service>
-    <service id="assetic.filter.compass" class="Assetic\Filter\CompassFilter">
-      <tag name="assetic.filter" alias="compass"/>
-      <argument>/usr/bin/compass</argument>
-      <argument>/usr/bin/ruby</argument>
-      <call method="setScss">
-        <argument>null</argument>
-      </call>
-      <call method="setUnixNewlines">
-        <argument>null</argument>
-      </call>
-      <call method="setNoCache">
-        <argument>null</argument>
-      </call>
-      <call method="setForce">
-        <argument>null</argument>
-      </call>
-      <call method="setQuiet">
-        <argument>null</argument>
+    <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
+      <tag name="assetic.filter" alias="cssrewrite"/>
+    </service>
+    <service id="assetic.filter.yui_css" class="Assetic\Filter\Yui\CssCompressorFilter">
+      <tag name="assetic.filter" alias="yui_css"/>
+      <argument>/var/www/html/agenda-moparman/app/Resources/java/yuicompressor-2.4.7.jar</argument>
+      <argument>/usr/bin/java</argument>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
       </call>
       <call method="setTimeout">
         <argument>null</argument>
       </call>
-      <call method="setDebugInfo">
-        <argument>false</argument>
-      </call>
-      <call method="setBoring">
-        <argument>true</argument>
-      </call>
-      <call method="setNoLineComments">
-        <argument>false</argument>
-      </call>
-      <call method="setStyle">
+      <call method="setStackSize">
         <argument>null</argument>
       </call>
-      <call method="setImagesDir">
+      <call method="setLineBreak">
         <argument>null</argument>
       </call>
-      <call method="setFontsDir">
-        <argument>null</argument>
-      </call>
-      <call method="setRelativeAssets">
-        <argument>false</argument>
-      </call>
-      <call method="setJavascriptsDir">
-        <argument>null</argument>
-      </call>
-      <call method="setHttpPath">
-        <argument>null</argument>
-      </call>
-      <call method="setHttpImagesPath">
-        <argument>null</argument>
-      </call>
-      <call method="setHttpFontsPath">
-        <argument>null</argument>
-      </call>
-      <call method="setHttpGeneratedImagesPath">
-        <argument>null</argument>
-      </call>
-      <call method="setGeneratedImagesPath">
-        <argument>null</argument>
-      </call>
-      <call method="setHttpJavascriptsPath">
-        <argument>null</argument>
-      </call>
-      <call method="setPlugins">
-        <argument type="collection"/>
-      </call>
-      <call method="setLoadPaths">
-        <argument type="collection"/>
-      </call>
-      <call method="setHomeEnv">
-        <argument>true</argument>
-      </call>
-      <call method="setCacheLocation">
-        <argument>/var/www/html/agenda-moparman/app/cache/dev</argument>
-      </call>
-    </service>
-    <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
-      <tag name="assetic.filter" alias="cssrewrite"/>
     </service>
     <service id="assetic.controller" class="Symfony\Bundle\AsseticBundle\Controller\AsseticController" scope="prototype">
       <argument type="service" id="request"/>

@@ -114,7 +114,7 @@ class CategoriesController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('name', 'text', array('label' => 'Nombre', 'data' => $category->getName()))
-            ->add('save', 'submit', array('label' => 'Editar Contacto'))
+            ->add('save', 'submit', array('label' => 'Editar Categoría'))
             ->getForm();
 
 
@@ -136,8 +136,5 @@ class CategoriesController extends Controller
 
         return $this->render('MDOAgendaMoparmanBundle:Categories:edit.html.twig', array( 'form' => $form->createView(),'letter' => $letter,'breadcrumbs' => $breadcrumbs, 'category' => $category));
     }
-
-
-
 
 }

@@ -40,3 +40,6 @@ MDOAgendaMoparmanBundle\Entity\Contact:
             category:
                 targetEntity: Category
                 inversedBy: contacts
+            vehicle:
+                targetEntity: Vehicle
+                inversedBy: owner

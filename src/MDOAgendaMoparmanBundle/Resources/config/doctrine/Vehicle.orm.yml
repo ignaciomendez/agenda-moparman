@@ -1,0 +1,37 @@
+MDOAgendaMoparmanBundle\Entity\Vehicle:
+    type: entity
+    table: null
+    repositoryClass: MDOAgendaMoparmanBundle\Entity\VehicleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        plate:
+            type: string
+            length: 255
+        photo:
+            type: string
+            length: 255
+            nullable: true
+        description:
+            type: string
+            length: 255
+        notes:
+            type: string
+            length: 500
+            nullable: true
+
+    lifecycleCallbacks: {  }
+    manyToMany:
+            categories:
+                targetEntity: VehicleCategory
+                inversedBy: vehicles
+            owner:
+                targetEntity: Contact
+                inversedBy: vehicle

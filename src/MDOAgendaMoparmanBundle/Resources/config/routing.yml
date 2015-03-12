@@ -2,6 +2,10 @@ mdo_agenda_moparman_index:
     path:     /
     defaults: { _controller: MDOAgendaMoparmanBundle:Default:index }
 
+mdo_agenda_moparman_search:
+    path:      /search/{result}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Search:index }
+
 mdo_agenda_moparman_contacts:
     path:     /contacts
     defaults: { _controller: MDOAgendaMoparmanBundle:Contacts:index }
@@ -14,7 +18,6 @@ mdo_agenda_moparman_contacts_category:
     path:      /contacts/category/{id}
     defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:showContacts }
 
-
 mdo_agenda_moparman_contacts_delete:
     path:      /contacts/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:deleteContacts }
@@ -26,6 +29,30 @@ mdo_agenda_moparman_contacts_single:
 mdo_agenda_moparman_contacts_edit:
     path:      /contact/edit/{id}
     defaults:  { _controller: MDOAgendaMoparmanBundle:Contacts:editContact }
+
+mdo_agenda_moparman_vehicles:
+    path:     /vehicles
+    defaults: { _controller: MDOAgendaMoparmanBundle:Vehicles:index }
+
+mdo_agenda_moparman_vehicles_add:
+    path:      /vehicles/add
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Vehicles:addVehicle, page: 1 }
+
+mdo_agenda_moparman_vehicles_category:
+    path:      /vehicles/category/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Vehicles:showVehicles }
+
+mdo_agenda_moparman_vehicles_delete:
+    path:      /vehicles/delete
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Vehicles:deleteVehicles }
+
+mdo_agenda_moparman_vehicles_single:
+    path:      /vehicles/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Vehicles:showVehicle }
+
+mdo_agenda_moparman_vehicles_edit:
+    path:      /vehicles/edit/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Vehicles:editVehicle }
 
 mdo_agenda_moparman_categories:
     path:      /categories
@@ -43,6 +70,18 @@ mdo_agenda_moparman_categories_delete:
     path:      /categories/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:Categories:deleteCategories }
 
-mdo_agenda_moparman_search:
-    path:      /search/{result}
-    defaults:  { _controller: MDOAgendaMoparmanBundle:Search:index }
+mdo_agenda_moparman_vehicle_categories:
+    path:      /vehicle-categories
+    defaults:  { _controller: MDOAgendaMoparmanBundle:VehicleCategories:index }
+
+mdo_agenda_moparman_vehicle_categories_add:
+    path:      /vehicle-categories/add
+    defaults:  { _controller: MDOAgendaMoparmanBundle:VehicleCategories:addCategory }
+
+mdo_agenda_moparman_vehicle_categories_edit:
+    path:      /vehicle-categories/edit/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:VehicleCategories:editCategory }
+
+mdo_agenda_moparman_vehicle_categories_delete:
+    path:      /vehicle-categories/delete
+    defaults:  { _controller: MDOAgendaMoparmanBundle:VehicleCategories:deleteCategories }

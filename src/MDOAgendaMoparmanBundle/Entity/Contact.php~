@@ -55,6 +55,11 @@ class Contact
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Vehicle", inversedBy="owner")
+     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     */
+    private $vehicle;
 
     /**
      * Get id
@@ -306,5 +311,40 @@ class Contact
     public function removeCategory(\MDOAgendaMoparmanBundle\Entity\Category $category)
     {
         $this->category->removeElement($category);
+    }
+
+
+
+    /**
+     * Add vehicle
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Vehicle $vehicle
+     * @return Contact
+     */
+    public function addVehicle(\MDOAgendaMoparmanBundle\Entity\Vehicle $vehicle)
+    {
+        $this->vehicle[] = $vehicle;
+
+        return $this;
+    }
+
+    /**
+     * Remove vehicle
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Vehicle $vehicle
+     */
+    public function removeVehicle(\MDOAgendaMoparmanBundle\Entity\Vehicle $vehicle)
+    {
+        $this->vehicle->removeElement($vehicle);
+    }
+
+    /**
+     * Get vehicle
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVehicle()
+    {
+        return $this->vehicle;
     }
 }

@@ -2,11 +2,11 @@
 
 // :default:index.html.twig
 return array (
-  '21fab8b' => 
+  '23fe30e' => 
   array (
     0 => 
     array (
-      0 => '@MDOAgendaMoparmanBundle/Resources/public/js/jquery.js',
+      0 => '@javascripts',
       1 => '@MDOAgendaMoparmanBundle/Resources/public/js/*',
     ),
     1 => 
@@ -14,8 +14,8 @@ return array (
     ),
     2 => 
     array (
-      'output' => '_controller/js/compiled/main.js',
-      'name' => '21fab8b',
+      'output' => '_controller/js/23fe30e.js',
+      'name' => '23fe30e',
       'debug' => NULL,
       'combine' => NULL,
       'vars' => 
