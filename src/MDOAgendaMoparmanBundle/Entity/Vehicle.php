@@ -5,10 +5,10 @@ namespace MDOAgendaMoparmanBundle\Entity;
 
 class Vehicle {
     /**
-     * @ORM\ManyToMany(targetEntity="VehicleCategory", inversedBy="vehicles")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Vehiclecategories", inversedBy="vehicles")
+     * @ORM\JoinColumn(name="categories_id", referencedColumnName="id")
      */
-    private $category;
+    private $categories;
     /**
      * @ORM\ManyToMany(targetEntity="Contact", inversedBy="vehicles")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
@@ -45,7 +45,7 @@ class Vehicle {
      */
     public function __construct()
     {
-        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->owner = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -175,36 +175,36 @@ class Vehicle {
     }
 
     /**
-     * Add category
+     * Add categories
      *
-     * @param \MDOAgendaMoparmanBundle\Entity\VehicleCategory $category
+     * @param \MDOAgendaMoparmanBundle\Entity\Vehiclecategories $categories
      * @return Vehicle
      */
-    public function addCategory(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $category)
+    public function addcategories(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories)
     {
-        $this->category[] = $category;
+        $this->categories[] = $categories;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Remove categories
      *
-     * @param \MDOAgendaMoparmanBundle\Entity\VehicleCategory $category
+     * @param \MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories
      */
-    public function removeCategory(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $category)
+    public function removecategories(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories)
     {
-        $this->category->removeElement($category);
+        $this->categories->removeElement($categories);
     }
 
     /**
-     * Get category
+     * Get categories
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCategory()
+    public function getcategories()
     {
-        return $this->category;
+        return $this->categories;
     }
 
     /**
@@ -239,21 +239,7 @@ class Vehicle {
     {
         return $this->owner;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $categories;
 
-
-    /**
-     * Get categories
-     *
-     * @return array
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
 
     /**
      * Get owner

@@ -37,6 +37,7 @@ class VehiclesController extends Controller {
 
     public function addVehicleAction(Request $request)
     {
+
         $breadcrumbs = array(
             array(
                 'link' => '/',
@@ -92,7 +93,7 @@ class VehiclesController extends Controller {
             $vehicle->setNotes($data['notes']);
 
             foreach($data['categories'] as $category)
-                $vehicle->addCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')->findById($category)[0]);
+                $vehicle->addCategories($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')->findById($category)[0]);
 
             $vehicle->addOwner($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findById($data['owner'])[0]);
 
