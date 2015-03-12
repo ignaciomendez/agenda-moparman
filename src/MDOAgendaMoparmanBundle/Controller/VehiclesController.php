@@ -69,8 +69,8 @@ class VehiclesController extends Controller {
         $form = $this->createFormBuilder()
             ->add('name', 'text',array('label' => 'Nombre'))
             ->add('plate', 'text',array('label' => 'Patente'))
-            ->add('description', 'text',array('label' => 'Descripción'))
-            ->add('notes', 'text',array('label' => 'Notas'))
+            ->add('description', 'textarea',array('label' => 'Descripción'))
+            ->add('notes', 'textarea',array('label' => 'Notas'))
             ->add('categories', 'choice', array('label' => 'Marca(s)', 'expanded' => true, 'multiple' => true, 'choices' => $categories_select))
             ->add('owner', 'choice', array('label' => 'Dueño', 'choices' => $contacts_select))
             ->add('save', 'submit', array('label' => 'Agregar Mercadería'))
@@ -113,6 +113,7 @@ class VehiclesController extends Controller {
     }
 
     public function deleteVehiclesAction(Request $request){
+
         $em = $this->getDoctrine()->getManager();
         foreach($request->request->get("delete_ids") as $delete_id){
             $vehicle = $this->getDoctrine()
@@ -125,42 +126,88 @@ class VehiclesController extends Controller {
     }
 
     public function editVehicleAction($id, Request $request){
-        $letter = null;
-        if($request->query->get('success') !== null)
-            $letter = 'success';
+        $categories = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')
+            ->findAll();
 
-        $category = $this->getDoctrine()
-            ->getRepository('MDOAgendaMoparmanBundle:Category')
+        foreach($categories as $category){
+            $categories_select[$category->getId()] = $category->getName();
+        }
+
+        $contacts = $this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findAll();
+        foreach($contacts as $contact)
+            $contacts_select[$contact->getId()] = $contact->getName();
+
+        $actual_vehicle = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Vehicle')
             ->findById($id)[0];
 
+        foreach($actual_vehicle->getCategories() as $category)
+            $selected_categories[] = $category->getId();
+
         $breadcrumbs = array(
-            array('link' => '/', 'section' => 'home'),
-            array('link' => '/categories', 'section' => 'Categorías'),
-            array('link' => '/categories/edit/'.$category->getId(), 'section' => $category->getName())
+            array(
+                'link' => '/',
+                'section' => 'Home'
+            ),
+            array (
+                'link' => '/vehicles',
+                'section' => 'Mercadería'
+            ),
+            array (
+                'link' => '/vehicles/edit/'.$id,
+                'section' => 'Editar '.$actual_vehicle->getTitle()
+            )
         );
 
         $form = $this->createFormBuilder()
-            ->add('name', 'text', array('label' => 'Nombre', 'data' => $category->getName()))
-            ->add('save', 'submit', array('label' => 'Editar Categoría'))
+            ->add('name', 'text',array('label' => 'Nombre', 'data' => $actual_vehicle->getTitle()))
+            ->add('plate', 'text',array('label' => 'Patente', 'data' => $actual_vehicle->getPlate()))
+            ->add('description', 'textarea',array('label' => 'Descripción', 'data' => $actual_vehicle->getDescription()))
+            ->add('notes', 'textarea',array('label' => 'Notas', 'data' => $actual_vehicle->getNotes()))
+            ->add('categories', 'choice', array('label' => 'Marca(s)', 'expanded' => true, 'multiple' => true, 'data' => $selected_categories, 'choices' => $categories_select))
+            ->add('owner', 'choice', array('label' => 'Dueño', 'choices' => $contacts_select, 'data' => $actual_vehicle->getOwners()[0]->getId()))
+            ->add('save', 'submit', array('label' => 'Agregar Mercadería'))
             ->getForm();
 
-
-
         $form->handleRequest($request);
+
+        $letter = false;
+
+        if($request->query->get('success') !== null)
+            $letter = 'success';
 
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $category->setName($data['name']);
+            $actual_vehicle->setTitle($data['name']);
+            $actual_vehicle->setPlate($data['plate']);
+            $actual_vehicle->setDescription($data['description']);
+            $actual_vehicle->setNotes($data['notes']);
 
+
+            foreach($categories_select as $category => $name)
+                $actual_vehicle->removeCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')->findById($category)[0]);
+
+            foreach($data['categories'] as $category)
+                $actual_vehicle->addCategories($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')->findById($category)[0]);
+
+            foreach($contacts_select as $contact => $name)
+                $actual_vehicle->removeOwner($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findById($contact)[0]);
+
+            $actual_vehicle->addOwner($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findById($data['owner'])[0]);
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            $em->persist($actual_vehicle);
             $em->flush();
 
-            return $this->redirect('/categories/edit/'.$id.'?success');
+            return $this->redirect('/vehicles/edit/'.$id.'?success');
         }
 
-        return $this->render('MDOAgendaMoparmanBundle:Categories:edit.html.twig', array( 'form' => $form->createView(),'letter' => $letter,'breadcrumbs' => $breadcrumbs, 'category' => $category));
+        return $this->render('MDOAgendaMoparmanBundle:Categories:new.html.twig', array(
+            'form' => $form->createView(),
+            'breadcrumbs' => $breadcrumbs,
+            'letter' => $letter
+        ));
     }
 } 

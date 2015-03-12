@@ -15,7 +15,7 @@
                 <tr>
                     <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ vehicle.id }}" /></td>
                     <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ vehicle.title | split('')[0] }}"></td>
-                    <td width="200"><a href="/vehicles/{{ vehicle.id }}">{{ vehicle.title }}</a></td>
+                    <td width="200"><a href="/vehicles/{{ vehicle.id }}">{{ vehicle.title }}</a> <a href="/vehicles/edit/{{ vehicle.id }}">[editar]</a</td>
                     <td width="200">{{ vehicle.plate }}</td>
                     <td width="200">{% for owner in vehicle.getOwners %} <a href="/contact/{{ owner.id }}">{{ owner.name }}</a> {% endfor %}</td>
                     <td width="200">

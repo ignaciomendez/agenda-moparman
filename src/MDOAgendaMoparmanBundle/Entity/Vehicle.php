@@ -192,7 +192,7 @@ class Vehicle {
      *
      * @param \MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories
      */
-    public function removecategories(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories)
+    public function removeCategory(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories)
     {
         $this->categories->removeElement($categories);
     }
