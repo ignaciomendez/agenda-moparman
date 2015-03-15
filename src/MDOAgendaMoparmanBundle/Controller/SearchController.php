@@ -40,9 +40,13 @@ class SearchController extends Controller
             ->setParameter('searchterm', '%'.$result.'%')->getResult();
         $contacts = $em->createQuery("SELECT c FROM MDOAgendaMoparmanBundle:Contact c WHERE c.name LIKE :searchterm OR c.email LIKE :searchterm OR c.city LIKE :searchterm OR c.phone LIKE :searchterm OR c.photo LIKE :searchterm")
             ->setParameter('searchterm', '%'.$result.'%')->getResult();
+        $vehicles = $em->createQuery("SELECT v FROM MDOAgendaMoparmanBundle:Vehicle v WHERE v.title LIKE :searchterm OR v.plate LIKE :searchterm OR v.description LIKE :searchterm OR v.notes LIKE :searchterm")
+            ->setParameter('searchterm', '%'.$result.'%')->getResult();
+        $duedates = $em->createQuery("SELECT d FROM MDOAgendaMoparmanBundle:DueDate d, MDOAgendaMoparmanBundle:Vehicle v WHERE v.id = d.vehicle AND v.title LIKE :searchterm OR v.plate LIKE :searchterm OR v.description LIKE :searchterm OR v.notes LIKE :searchterm or d.description LIKE :searchterm")
+            ->setParameter('searchterm', '%'.$result.'%')->getResult();
 
 
-        return $this->render('MDOAgendaMoparmanBundle:Search:results.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'result' => $result, 'contacts' => $contacts, 'categories' => $categories));
+        return $this->render('MDOAgendaMoparmanBundle:Search:results.html.twig', array('letter' => $letter,'breadcrumbs' => $breadcrumbs, 'result' => $result, 'contacts' => $contacts, 'categories' => $categories, 'vehicles' => $vehicles, 'duedates' => $duedates));
     }
 
 

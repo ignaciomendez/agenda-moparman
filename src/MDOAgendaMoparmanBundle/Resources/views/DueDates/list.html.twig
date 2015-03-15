@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <table>
+        <tbody>
+        {% for due in duedates %}
+            {% set due_days = date("now").diff(date(due.dueDate)) %}
+        <tr>
+            <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="ID" /></td>
+            <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ due.description | split('')[0] }}"></td>
+            <td width="250"><a href="/due-date/{{ due.id }}">{{ due.description }}</a></td>
+            <td width="250"><a href="/vehicle/{{ due.getVehicle.id }}">{{ due.getVehicle.title }}</a></td>
+            <td width="300">
+
+            {% if "now"|date('Y-m-d') > due.dueDate|date('Y-m-d') %}
+                <span class="label alert">Vencido hace {{ due_days.days }} días</span>
+            {% elseif "now"|date('Y-m-d') > due.dueDate|date_modify("-"~due.reminders~" day")|date('Y-m-d') %}
+                <span class="label secondary">Vence en {{ due_days.days }} días</span>
+            {% else %}
+                <span class="label success">Sin Vencimientos Próximos</span>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

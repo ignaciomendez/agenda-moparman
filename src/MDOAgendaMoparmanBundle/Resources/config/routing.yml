@@ -85,3 +85,11 @@ mdo_agenda_moparman_vehicle_categories_edit:
 mdo_agenda_moparman_vehicle_categories_delete:
     path:      /vehicle-categories/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:VehicleCategories:deleteCategories }
+
+mdo_agenda_moparman_duedates:
+    path:      /due-dates
+    defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:index }
+
+mdo_agenda_moparman_duedates_add:
+    path:      /due-dates/add
+    defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:add }

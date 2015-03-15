@@ -1,0 +1,27 @@
+MDOAgendaMoparmanBundle\Entity\DueDate:
+    type: entity
+    table: null
+    repositoryClass: MDOAgendaMoparmanBundle\Entity\DueDateRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        due_date:
+            type: datetime
+        start_date:
+            type: datetime
+        price:
+            type: decimal
+        reminders:
+            type: string
+        notes:
+            type: string
+        description:
+            type: string
+    lifecycleCallbacks: {  }
+    manyToOne:
+            vehicle:
+                targetEntity: Vehicle

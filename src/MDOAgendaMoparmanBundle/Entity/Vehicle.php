@@ -200,9 +200,9 @@ class Vehicle {
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getcategories()
+    public function getCategories()
     {
         return $this->categories;
     }
@@ -249,5 +249,18 @@ class Vehicle {
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories
+     * @return Vehicle
+     */
+    public function addCategory(\MDOAgendaMoparmanBundle\Entity\VehicleCategory $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
     }
 }

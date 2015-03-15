@@ -20,30 +20,89 @@
     {% endif %}
     </div></div>
     <div class="row"><div class="large-12 columns">
-    {% if contacts != null %}
-        <hr/>
-        <h3>Resultados de Contactos</h3>
+            {% if contacts != null %}
+                <hr/>
+                <h3>Resultados de Contactos</h3>
 
-        <table>
-            <tbody>
-            {% for contact in contacts %}
-                <tr>
-                    <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ contact.id }}" /></td>
-                    <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
-                    <td width="200"><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></td>
-                    <td width="200">{{ contact.phone }}</td>
-                    <td width="200">{{ contact.city }}</td>
-                    <td width="200">
-                        {% for category in contact.getCategory %}
-                            <span class="label secondary"><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></span>
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        No se encontraron <strong>contactos</strong> con este criterio
-    {% endif %}
-    </div></div>
+                <table>
+                    <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ contact.id }}" /></td>
+                            <td width="50" class="text-center"><img src="http://placehold.it/48x48&amp;text=Foto"></td>
+                            <td width="200"><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></td>
+                            <td width="200">{{ contact.phone }}</td>
+                            <td width="200">{{ contact.city }}</td>
+                            <td width="200">
+                                {% for category in contact.getCategory %}
+                                    <span class="label secondary"><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                No se encontraron <strong>contactos</strong> con este criterio
+            {% endif %}
+        </div></div>
+    <div class="row"><div class="large-12 columns">
+            {% if vehicles != null %}
+                <hr/>
+                <h3>Resultados de Mercadería</h3>
+
+                <table>
+                    <tbody>
+                    {% for vehicle in vehicles %}
+                        <tr>
+                            <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ vehicle.id }}" /></td>
+                            <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ vehicle.title | split('')[0] }}"></td>
+                            <td width="200"><a href="/vehicles/{{ vehicle.id }}">{{ vehicle.title }}</a> <a href="/vehicles/edit/{{ vehicle.id }}">[editar]</a</td>
+                            <td width="200">{{ vehicle.plate }}</td>
+                            <td width="200">{% for owner in vehicle.getOwners %} <a href="/contact/{{ owner.id }}">{{ owner.name }}</a> {% endfor %}</td>
+                            <td width="200">
+                                {% for category in vehicle.getCategories %}
+                                    <span class="label secondary"><a href="/contacts/category/{{ category.id }}">{{ category.name }}</a></span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                No se encontraron <strong>vehículos</strong> con este criterio
+            {% endif %}
+        </div></div>
+    <div class="row"><div class="large-12 columns">
+            {% if duedates != null %}
+                <hr/>
+                <h3>Resultados de Vencimientos</h3>
+
+                <table>
+                    <tbody>
+                    {% for due in duedates %}
+                        {% set due_days = date("now").diff(date(due.dueDate)) %}
+                        <tr>
+                            <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="ID" /></td>
+                            <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text=A"></td>
+                            <td width="250"><a href="#">Póliza</a></td>
+                            <td width="250"><a href="#">Ford Focus</a></td>
+                            <td width="300">
+
+                                {% if "now"|date('Y-m-d') > due.dueDate|date('Y-m-d') %}
+                                    <span class="label alert">Vencido hace {{ due_days.days }} días</span>
+                                {% elseif "now"|date('Y-m-d') > due.dueDate|date_modify("-"~due.reminders~" day")|date('Y-m-d') %}
+                                    <span class="label secondary">Vence en {{ due_days.days }} días</span>
+                                {% else %}
+                                    <span class="label success">Sin Vencimientos Próximos</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                No se encontraron <strong>vencimientos</strong> con este criterio
+            {% endif %}
+        </div></div>
 {% endblock %}
