@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set due_days = date("now").diff(date(due.dueDate)) %}
+<div class="row">
+    <div class="large-2 columns">
+        <div class="row">
+            <img src="http://placehold.it/1000x1000&amp;text=Foto">
+        </div>
+        <div class="row">
+            <div class="categories">
+                {% if "now"|date('Y-m-d') > due.dueDate|date('Y-m-d') %}
+                    <span class="label alert">Vencido hace {{ due_days.days }} días</span>
+                {% elseif "now"|date('Y-m-d') > due.dueDate|date_modify("-"~due.reminders~" day")|date('Y-m-d') %}
+                    <span class="label secondary">Vence en {{ due_days.days }} días</span>
+                {% else %}
+                    <span class="label success">Sin Vencimientos Próximos</span>
+                {% endif %}
+                <br/>
+            </div>
+        </div>
+
+    </div>
+    <div class="large-10 columns">
+        <div class="row">
+            <h4> {{ due.description }}<small> <a href="/due-dates/edit/{{ due.id }}">[editar]</a></small></h4>
+            <div class="large-12 columns">
+                <label> {{ due.vehicle.title }} </label>
+            </div>
+            <div class="large-12 columns">
+                <label>Observaciones:
+                </label>
+                {{ due.notes }}
+            </div>
+            <hr>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

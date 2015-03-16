@@ -93,3 +93,15 @@ mdo_agenda_moparman_duedates:
 mdo_agenda_moparman_duedates_add:
     path:      /due-dates/add
     defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:add }
+
+mdo_agenda_moparman_duedates_edit:
+    path:      /due-dates/edit/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:edit }
+
+mdo_agenda_moparman_duedates_delete:
+    path:      /due-dates/delete
+    defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:delete }
+
+mdo_agenda_moparman_duedates_single:
+    path:      /due-dates/{id}
+    defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:show }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<form method="post" id="contacts-form" action="/vehicles/delete">
+<form method="post" id="vehicles-form" action="/vehicles/delete">
     <div class="large-12 columns">
         {% if letter == 'success' %}
             <div class="alert-box success radius" data-alert="">
@@ -32,7 +32,7 @@
     <div class="small-4 columns right">
         <div class="row">
             <div class="small-6 columns">
-                <a class="button tiny alert expand" href="#" onclick="$('#contacts-form').submit();">Borrar Selección</a>
+                <a class="button tiny alert expand" href="#" onclick="$('#vehicles-form').submit();">Borrar Selección</a>
             </div>
             <div class="small-6 columns">
                 <a class="button tiny success expand" href="/vehicles/add">Agregar Nueva Mercadería</a>
