@@ -220,4 +220,32 @@ class DueDate {
     {
         return $this->description;
     }
+    /**
+     * @var string
+     */
+    private $vehicle_description;
+
+
+    /**
+     * Set vehicle_description
+     *
+     * @param string $vehicleDescription
+     * @return DueDate
+     */
+    public function setVehicleDescription($vehicleDescription)
+    {
+        $this->vehicle_description = $vehicleDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get vehicle_description
+     *
+     * @return string 
+     */
+    public function getVehicleDescription()
+    {
+        return $this->vehicle_description;
+    }
 }

@@ -16,7 +16,11 @@
             <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ due.id }}" /></td>
             <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ due.description | split('')[0] }}"></td>
             <td width="250"><a href="/due-dates/{{ due.id }}">{{ due.description }}</a></td>
-            <td width="300"><a href="/vehicle/{{ due.getVehicle.id }}">{{ due.getVehicle.title }}</a></td>
+            {% if due.getVehicle == false %}
+                <td width="300">{{ due.getVehicleDescription }}</td>
+            {% else %}
+                <td width="300"><a href="/vehicle/{{ due.getVehicle.id }}">{{ due.getVehicle.title }}</a></td>
+            {% endif %}
             <td width="300">
 
             {% if "now"|date('Y-m-d') > due.dueDate|date('Y-m-d') %}

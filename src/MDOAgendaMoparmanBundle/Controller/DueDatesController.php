@@ -44,6 +44,7 @@ class DueDatesController extends Controller {
             $letter = 'success';
 
         $vehicles = $em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findAll();
+        $vehicle_select[0] = 'Ninguno';
         foreach($vehicles as $vehicle)
             $vehicle_select[$vehicle->getId()] = $vehicle->getTitle();
 
@@ -52,6 +53,7 @@ class DueDatesController extends Controller {
                 'choices'   => $vehicle_select,
                 'label' => 'Vehículo',
             ))
+            ->add('vehicle_description', 'text', array('label' => 'Vehículo (en caso de no estar en el listado)', 'required' => false))
             ->add('start_date', 'date',array('label' => 'Fecha de Inicio del Trámite','required' => false))
             ->add('due_date', 'date',array('label' => 'Fecha de Vencimiento del Trámite','required' => false))
             ->add('price', 'number',array('label' => 'Monto','required' => false))
@@ -82,13 +84,16 @@ class DueDatesController extends Controller {
             $data = $form->getData();
 
             $duedate = new DueDate();
+            $duedate->setVehicleDescription($data['vehicle_description']);
             $duedate->setStartDate($data['start_date']);
             $duedate->setDueDate($data['due_date']);
             $duedate->setPrice($data['price']);
             $duedate->setReminders($data['reminder']);
             $duedate->setDescription($data['description']);
             $duedate->setNotes($data['notes']);
-            $duedate->setVehicle($em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findById($data['vehicle'])[0]);
+
+            if($data['vehicle'] !== 0)
+                $duedate->setVehicle($em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findById($data['vehicle'])[0]);
 
 
             $em = $this->getDoctrine()->getManager();
@@ -112,6 +117,8 @@ class DueDatesController extends Controller {
             $letter = 'success';
 
         $vehicles = $em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findAll();
+
+        $vehicle_select[0] = 'Ninguno';
         foreach($vehicles as $vehicle)
             $vehicle_select[$vehicle->getId()] = $vehicle->getTitle();
 
@@ -120,6 +127,7 @@ class DueDatesController extends Controller {
                 'choices'   => $vehicle_select,
                 'label' => 'Vehículo',
             ))
+            ->add('vehicle_description', 'text', array('label' => 'Vehículo (en caso de no estar en el listado)', 'required' => false, 'data' => $duedate->getVehicleDescription()))
             ->add('start_date', 'date',array('label' => 'Fecha de Inicio del Trámite','required' => false, 'data' => $duedate->getStartDate()))
             ->add('due_date', 'date',array('label' => 'Fecha de Vencimiento del Trámite','required' => false, 'data' => $duedate->getDueDate()))
             ->add('price', 'number',array('label' => 'Monto','required' => false, 'data' => $duedate->getPrice()))
@@ -149,13 +157,18 @@ class DueDatesController extends Controller {
         if ($form->isValid()) {
             $data = $form->getData();
 
+            $duedate->setVehicleDescription($data['vehicle_description']);
             $duedate->setStartDate($data['start_date']);
             $duedate->setDueDate($data['due_date']);
             $duedate->setPrice($data['price']);
             $duedate->setReminders($data['reminder']);
             $duedate->setDescription($data['description']);
             $duedate->setNotes($data['notes']);
-            $duedate->setVehicle($em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findById($data['vehicle'])[0]);
+
+            if($data['vehicle'] !== 0)
+                $duedate->setVehicle($em->getRepository('MDOAgendaMoparmanBundle:Vehicle')->findById($data['vehicle'])[0]);
+            else
+                $duedate->setVehicle(null);
 
 
             $em = $this->getDoctrine()->getManager();

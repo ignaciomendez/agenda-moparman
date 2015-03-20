@@ -21,6 +21,8 @@ MDOAgendaMoparmanBundle\Entity\DueDate:
             type: string
         description:
             type: string
+        vehicle_description:
+            type: string
     lifecycleCallbacks: {  }
     manyToOne:
             vehicle:
