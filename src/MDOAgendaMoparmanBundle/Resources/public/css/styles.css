@@ -31,3 +31,52 @@
     padding: 10px;
     margin:10px;
 }
+
+input.search-bar {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    font-size: 12px;
+    height: 38px;
+}
+input.search-bar:focus {
+    box-shadow: none;
+}
+input.search-bar {
+    border-radius: 0.1875em 0 0 0.1875em;
+}
+.button.search, button.search {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ededed;
+    border-bottom-right-radius: 3px;
+    border-color: #e6e6e6 #e6e6e6 #e6e6e6 -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid solid none;
+    border-top-right-radius: 3px;
+    border-width: 1px 1px 1px medium;
+    font-size: 18px;
+    height: 38px;
+    padding-top: 0;
+}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-family: inherit;
+    font-size: 0.875em;
+    margin: 0 0 1em;
+    padding: 0.5em;
+    transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    width: 100%;
+}
+
+textarea, input {
+    background-color: #f7f7f7 !important;
+    border: 1px solid #ebebeb !important;
+    box-shadow: 0 0 0 0 transparent !important;
+}
