@@ -1,0 +1,20 @@
+MDOAgendaMoparmanBundle\Entity\Picture:
+    type: entity
+    table: null
+    repositoryClass: MDOAgendaMoparmanBundle\Entity\PictureRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        upload_date:
+            type: datetime
+            nullable: true
+        description:
+            type: string
+            nullable: true
+        path:
+            type: string
+    lifecycleCallbacks: {  }

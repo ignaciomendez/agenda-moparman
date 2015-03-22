@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if letter == 'success' %}
+        <div class="alert-box success radius" data-alert="">
+            <strong>¡Éxito!</strong> la foto se ha eliminado correctamente.
+            <a class="close" href="#">×</a>
+        </div>
+    {% endif %}
+
+    <form method="post" id="pictures-form" name="pictures-form" action="/gallery/delete">
+        <ul class="clearing-thumbs" style="">
+            {% for picture in pictures %}
+            <li id="thumb-{{ picture.id }}"><a href="#" onclick="$('#checkbox-{{ picture.id }}').prop('checked', function (i, value) {
+        return !value;
+    });" class="th"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="delete_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).resize(240,100) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></a></li>
+           {% endfor %}
+        </ul>
+
+
+        <div class="small-4 columns right">
+            <div class="row">
+                <div class="small-6 columns">
+                    <a class="button tiny alert expand" href="#" onclick="$('#pictures-form').submit();">Borrar Selección</a>
+                </div>
+                <div class="small-6 columns">
+                    <a class="button tiny success expand" href="/upload">Subir Nueva Foto</a>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

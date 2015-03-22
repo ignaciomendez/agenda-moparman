@@ -347,4 +347,32 @@ class Contact
     {
         return $this->vehicle;
     }
+    /**
+     * @var \MDOAgendaMoparmanBundle\Entity\Picture
+     */
+    private $picture;
+
+
+    /**
+     * Set picture
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Picture $picture
+     * @return Contact
+     */
+    public function setPicture(\MDOAgendaMoparmanBundle\Entity\Picture $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \MDOAgendaMoparmanBundle\Entity\Picture 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 }

@@ -105,3 +105,15 @@ mdo_agenda_moparman_duedates_delete:
 mdo_agenda_moparman_duedates_single:
     path:      /due-dates/{id}
     defaults:  { _controller: MDOAgendaMoparmanBundle:DueDates:show }
+
+mdo_agenda_moparman_pictures_upload:
+    path:      /upload
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Pictures:upload }
+
+mdo_agenda_moparman_pictures_gallery:
+    path:      /gallery
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Pictures:gallery }
+
+mdo_agenda_moparman_pictures_delete:
+    path:      /gallery/delete
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Pictures:delete }

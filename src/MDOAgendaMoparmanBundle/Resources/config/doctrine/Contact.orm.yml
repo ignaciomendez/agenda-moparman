@@ -43,3 +43,7 @@ MDOAgendaMoparmanBundle\Entity\Contact:
             vehicle:
                 targetEntity: Vehicle
                 inversedBy: owner
+    manyToOne:
+            picture:
+                targetEntity: Picture
+                nullable: true
