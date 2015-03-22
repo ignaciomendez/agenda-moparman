@@ -20,9 +20,17 @@ gulp.task('fonts', function () {
 gulp.task('js', function() {
     gulp.src([
         './web/bundles/*/js/**/*.js',
-        './web/assets/vendor/foundation/*.js',
+        './web/assets/vendor/foundation/js/foundation.min.js',
         './web/assets/vendor/jquery/dist/jquery.min.js',
         './web/assets/vendor/requirejs/require.js'
     ])
         .pipe(gulp.dest('./web/assets/js'));
+});
+
+var uglify = require('gulp-uglify');
+
+gulp.task('compress', function() {
+    gulp.src(['./web/assets/js/*.js'])
+        .pipe(uglify())
+        .pipe(gulp.dest('./web/assets/dist'))
 });
