@@ -9,13 +9,15 @@
     {% endif %}
 
     <form method="post" id="pictures-form" name="pictures-form" action="/gallery/delete">
-        <ul class="clearing-thumbs" style="">
-            {% for picture in pictures %}
-            <li id="thumb-{{ picture.id }}"><a href="#" onclick="$('#checkbox-{{ picture.id }}').prop('checked', function (i, value) {
-        return !value;
-    });" class="th"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="delete_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).resize(240,100) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></a></li>
-           {% endfor %}
-        </ul>
+        <div class="orbit-container">
+            <ul class="clearing-thumbs" style="text-align:center;">
+                {% for picture in pictures %}
+                    <a href="javascript:void(0);" onclick="$('#checkbox-{{ picture.id }}').prop('checked', function (i, value) {
+                            return !value;
+                            });" class="th"><li id="thumb-{{ picture.id }}"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="delete_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).cropResize(300) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></li></a>
+               {% endfor %}
+            </ul>
+        </div>
 
 
         <div class="small-4 columns right">
