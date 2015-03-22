@@ -23,12 +23,12 @@
     </div>
     <div class="large-10 columns">
         <div class="row">
-            <h4> {{ due.description }}<small> <a href="/due-dates/edit/{{ due.id }}">[editar]</a></small></h4>
+            <h4> {{ due.description }} <small> <a href="/due-dates/edit/{{ due.id }}">[editar]</a></small></h4>
             <div class="large-12 columns">
                 {% if due.getVehicle == false %}
-                    <label> {{ due.getVehicleDescription }} </label>
+                    <label> {{ due.getVehicleDescription }} ({{ due.dueDate|date('Y-m-d') }}) </label>
                 {% else %}
-                    <label> <a href="/vehicle/{{ due.getVehicle.id }}">{{ due.vehicle.title }}</a> </label>
+                    <label> <a href="/vehicle/{{ due.getVehicle.id }}">{{ due.vehicle.title }}</a> ({{ due.dueDate|date('Y-m-d') }}) </label>
                 {% endif %}
             </div>
             <div class="large-12 columns">
