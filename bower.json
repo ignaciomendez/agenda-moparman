@@ -1,0 +1,23 @@
+{
+  "name": "agenda-moparman",
+  "version": "0.1",
+  "homepage": "https://github.com/milardovich/agenda-moparman",
+  "directory": "web/assets/vendor",
+  "authors": [
+    "Sergio Milardovich <sergio.milardovich@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.1",
+    "requirejs": "~2.1.16",
+    "foundation-icon-fonts": "*"
+  }
+}
