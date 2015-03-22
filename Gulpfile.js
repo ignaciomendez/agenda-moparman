@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 
-gulp.task('default', function () {});
+gulp.task('default', function () {
+    gulp.start('sass','fonts','js-copy','js-compress','css-copy','css-minify');
+});
 
 var sass = sass = require('gulp-sass');
 
@@ -17,7 +19,7 @@ gulp.task('fonts', function () {
         .pipe(copy('./web/assets/fonts', {prefix: 7}));
 });
 
-gulp.task('js', function() {
+gulp.task('js-copy', function() {
     gulp.src([
         './web/bundles/*/js/**/*.js',
         './web/assets/vendor/foundation/js/foundation.min.js',
@@ -29,8 +31,23 @@ gulp.task('js', function() {
 
 var uglify = require('gulp-uglify');
 
-gulp.task('compress', function() {
+gulp.task('js-compress', function() {
     gulp.src(['./web/assets/js/*.js'])
         .pipe(uglify())
-        .pipe(gulp.dest('./web/assets/dist'))
+        .pipe(gulp.dest('./web/assets/dist/js/'))
+});
+
+gulp.task('css-copy', function() {
+    gulp.src([
+        './web/bundles/*/css/**/*.css'
+    ])
+        .pipe(gulp.dest('./web/assets/css'));
+});
+
+var minifyCSS = require('gulp-minify-css');
+
+gulp.task('css-minify', function() {
+    return gulp.src(['./web/assets/css/*.css','./web/bundles/*/css/**/*.css'])
+        .pipe(minifyCSS({keepBreaks:true}))
+        .pipe(gulp.dest('./web/assets/dist/css/'))
 });
