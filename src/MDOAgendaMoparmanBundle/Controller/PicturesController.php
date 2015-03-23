@@ -89,6 +89,18 @@ class PicturesController extends Controller
         ));
     }
 
+    public function modalAction(Request $request)
+    {
+
+        $pictures = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Picture')
+            ->findAll();
+
+        return $this->render('MDOAgendaMoparmanBundle:Pictures:modal.html.twig', array(
+            'pictures' => $pictures
+        ));
+    }
+
     public function deleteAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         foreach($request->request->get("delete_ids") as $delete_id){

@@ -117,3 +117,7 @@ mdo_agenda_moparman_pictures_gallery:
 mdo_agenda_moparman_pictures_delete:
     path:      /gallery/delete
     defaults:  { _controller: MDOAgendaMoparmanBundle:Pictures:delete }
+
+mdo_agenda_moparman_pictures_modal:
+    path:      /gallery/modal
+    defaults:  { _controller: MDOAgendaMoparmanBundle:Pictures:modal }

@@ -1,0 +1,22 @@
+    <form method="post" id="pictures-form" name="pictures-form" action="/gallery/delete">
+        <div class="orbit-container">
+            <ul class="clearing-thumbs" style="text-align:center;">
+                {% for picture in pictures %}
+                    <a href="javascript:void(0);" onclick="check({{ picture.id }});$('#checkbox-'+{{ picture.id }}).prop('checked', function (i, value) {
+                            return !value;
+                            });" class="th"><li id="thumb-{{ picture.id }}"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="picture_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(120,100,0,0) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></li></a>
+               {% endfor %}
+            </ul>
+        </div>
+    </form>
+    <div style="text-align:right"><a onclick="$('#myModal').foundation('reveal', 'close');" class="label success small">Seleccionar</a></div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+
+    <script>
+        function check(id){
+            if($('#selected-checkbox-'+id).length > 0)
+                $('#selected-checkbox-'+id).remove();
+            else
+                $('#checkboxes').append('<input id="selected-checkbox-'+id+'" type="checkbox" value="'+id+'" name="form[picture][]" checked="checked" /> ');
+        }
+    </script>

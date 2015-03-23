@@ -375,4 +375,27 @@ class Contact
     {
         return $this->picture;
     }
+
+    /**
+     * Add picture
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Picture $picture
+     * @return Contact
+     */
+    public function addPicture(\MDOAgendaMoparmanBundle\Entity\Picture $picture)
+    {
+        $this->picture[] = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Remove picture
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Picture $picture
+     */
+    public function removePicture(\MDOAgendaMoparmanBundle\Entity\Picture $picture)
+    {
+        $this->picture->removeElement($picture);
+    }
 }

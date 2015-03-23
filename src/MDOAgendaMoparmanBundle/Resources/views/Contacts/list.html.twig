@@ -14,7 +14,20 @@
             {% for contact in contacts %}
                 <tr>
                     <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ contact.id }}" /></td>
-                    <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ contact.name | split('')[0] }}"></td>
+                    <td width="50" class="text-center">
+                            {% set p = false %}
+                           {% for picture in contact.picture %}
+                               {% if p == false %}
+                                   {% if picture.path is not null %}
+                                       <img class="placeholder" src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(64,64,0,0) }}" >
+                                       {% set p = true %}
+                                    {% endif %}
+                               {% endif %}
+                           {% endfor %}
+                        {% if p == false %}
+                            <img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ contact.name | split('')[0] }}">
+                        {% endif %}
+                    </td>
                     <td width="200"><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></td>
                     <td width="200">{{ contact.phone }}</td>
                     <td width="200">{{ contact.city }}</td>

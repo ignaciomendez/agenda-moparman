@@ -1,17 +1,31 @@
-{% block gender_widget %}
-    {% spaceless %}
-        {% if expanded %}
-            <ul {{ block('widget_container_attributes') }}>
-                {% for child in form %}
-                    <li>
-                        {{ form_widget(child) }}
-                        {{ form_label(child) }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            {# just let the choice widget render the select tag #}
-            {{ block('choice_widget') }}
-        {% endif %}
-    {% endspaceless %}
+{% block gallerypicker_widget %}
+    <script>
+        function getChecked() {
+            var checked = [];
+            $("input[name='form[picture][]']:checked").each(function () {
+                checked.push(parseInt($(this).val()));
+            });
+            return checked;
+        }
+    </script>
+    <button data-reveal-id="myModal" onclick="
+
+    $('#myModal').foundation('reveal', 'open', {
+        url: '/gallery/modal',
+        complete: function(data) {
+            getChecked().forEach(function(id) {
+                $('#checkbox-'+id).prop('checked', true);
+            });
+        }
+    });
+    " class="label tiny secondary" id="pictures"><i style="font-size:24px;" class="fi-camera"></i> Elegir Fotos</button>
+
+    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    </div><br/><br/>
+    <div id="checkboxes" style="display:none;">
+        {% for c in data %}
+            <input id="selected-checkbox-{{ c }}" type="checkbox" value="{{ c }}" name="form[picture][]" checked="checked" />
+        {% endfor %}
+    </div>
+
 {% endblock %}

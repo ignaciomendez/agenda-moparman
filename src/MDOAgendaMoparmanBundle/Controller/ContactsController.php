@@ -6,10 +6,12 @@ namespace MDOAgendaMoparmanBundle\Controller;
 use MDOAgendaMoparmanBundle\Form\CategoryType;
 use MDOAgendaMoparmanBundle\Entity\Contact;
 use MDOAgendaMoparmanBundle\Entity\Category;
+use MDOAgendaMoparmanBundle\Entity\Picture;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use MDOAgendaMoparmanBundle\Form\Type\GallerypickerType;
 
 class ContactsController extends Controller
 {
@@ -50,6 +52,14 @@ class ContactsController extends Controller
             $categories_select[$category->getId()] = $category->getName();
         }
 
+        $pictures = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Picture')
+            ->findAll();
+
+        $pictures_select = array();
+        foreach($pictures as $picture)
+            $pictures_select[$picture->getId()] = $picture->getPath();
+
         $form = $this->createFormBuilder()
             ->add('name', 'text',array('label' => 'Nombre','required' => false))
             ->add('email', 'email',array('label' => 'E-mail','required' => false))
@@ -63,6 +73,7 @@ class ContactsController extends Controller
                 'expanded' => true,
                 'label' => 'Categorías',
             ))
+            ->add('picture',new GallerypickerType(), array('label' => 'Foto','multiple'  => true, 'choices' => $pictures_select))
             ->add('save', 'submit', array('label' => 'Crear Contacto'))
             ->getForm();
 
@@ -76,6 +87,7 @@ class ContactsController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
+
             $contact = new Contact();
             $contact->setName($data['name']);
             $contact->setAddress($data['address']);
@@ -84,6 +96,10 @@ class ContactsController extends Controller
             $contact->setPhone($data['phone']);
             $contact->setNotes($data['notes']);
             $contact->setPhoto('');
+
+
+            foreach($data['picture'] as $index => $picture)
+                $contact->addPicture($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Picture')->find($picture));
 
             foreach($data['categories'] as $category)
                 $contact->addCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Category')->find($category));
@@ -201,6 +217,18 @@ class ContactsController extends Controller
             $used_categories_select[] = $used_category->getId();
         }
 
+        $pictures = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Picture')
+            ->findAll();
+        $pictures_select = array();
+        foreach($pictures as $picture)
+            $pictures_select[$picture->getId()] = $picture->getPath();
+
+        $used_pictures = $contact->getPicture();
+        foreach($used_pictures as $used_picture){
+            $used_pictures_select[] = $used_picture->getId();
+        }
+
         $breadcrumbs = array(
             array('link' => '/', 'section' => 'home'),
             array('link' => '/contacts', 'section' => 'Contactos'),
@@ -215,6 +243,7 @@ class ContactsController extends Controller
             ->add('address', 'text', array('label' => 'Dirección','data' => $contact->getAddress(),'required' => false))
             ->add('notes', 'textarea', array('label' => 'Notas','data' => $contact->getNotes(),'required' => false))
             ->add('categories', 'choice', array('data' => $used_categories_select, 'expanded' => true, 'multiple' => true, 'choices' => $categories_select))
+            ->add('picture',new GallerypickerType(), array('data' => $used_pictures_select, 'label' => 'Foto','multiple'  => true, 'choices' => $pictures_select))
             ->add('save', 'submit', array('label' => 'Editar Contacto'))
             ->getForm();
 
@@ -224,6 +253,8 @@ class ContactsController extends Controller
 
         if ($form->isValid()) {
             $data = $form->getData();
+
+            //die(var_dump($data));
 
             $contact->setName($data['name']);
             $contact->setAddress($data['address']);
@@ -238,6 +269,12 @@ class ContactsController extends Controller
 
             foreach($data['categories'] as $category)
                 $contact->addCategory($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Category')->find($category));
+
+            foreach($contact->getPicture() as $picture)
+                $contact->removePicture($picture);
+
+            foreach($data['picture'] as $index => $picture)
+                $contact->addPicture($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Picture')->find($picture));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
