@@ -14,7 +14,7 @@
                 {% for picture in pictures %}
                     <a href="javascript:void(0);" onclick="$('#checkbox-{{ picture.id }}').prop('checked', function (i, value) {
                             return !value;
-                            });" class="th"><li id="thumb-{{ picture.id }}"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="delete_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).cropResize(300) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></li></a>
+                            });" class="th"><li id="thumb-{{ picture.id }}"><input id="checkbox-{{ picture.id }}" class="gallery-item-checkbox" type="checkbox" value="{{ picture.id }}" name="delete_ids[]" /><img src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(250,150,0,0) }}" data-caption="{{ picture.description }}"><hr/>{{ picture.description }}<hr/></li></a>
                {% endfor %}
             </ul>
         </div>
