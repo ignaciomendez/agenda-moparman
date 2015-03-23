@@ -9,6 +9,7 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use MDOAgendaMoparmanBundle\Form\Type\GallerypickerType;
 
 class VehiclesController extends Controller {
     public function indexAction(Request $request)
@@ -66,12 +67,21 @@ class VehiclesController extends Controller {
             $contacts_select[$contact->getId()] = $contact->getName();
         }
 
+        $pictures = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Picture')
+            ->findAll();
+
+        $pictures_select = array();
+        foreach($pictures as $picture)
+            $pictures_select[$picture->getId()] = $picture->getPath();
+
         $form = $this->createFormBuilder()
             ->add('name', 'text',array('label' => 'Nombre'))
             ->add('plate', 'text',array('label' => 'Patente'))
             ->add('description', 'textarea',array('label' => 'Descripción'))
             ->add('notes', 'textarea',array('label' => 'Notas'))
             ->add('categories', 'choice', array('label' => 'Marca(s)', 'expanded' => true, 'multiple' => true, 'choices' => $categories_select))
+            ->add('picture',new GallerypickerType(), array('label' => 'Foto','multiple'  => true, 'choices' => $pictures_select))
             ->add('owner', 'choice', array('label' => 'Dueño', 'choices' => $contacts_select))
             ->add('save', 'submit', array('label' => 'Agregar Mercadería'))
             ->getForm();
@@ -96,6 +106,9 @@ class VehiclesController extends Controller {
                 $vehicle->addCategories($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:VehicleCategory')->findById($category)[0]);
 
             $vehicle->addOwner($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findById($data['owner'])[0]);
+
+            foreach($data['picture'] as $index => $picture)
+                $vehicle->addPicture($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Picture')->find($picture));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($vehicle);
@@ -145,6 +158,19 @@ class VehiclesController extends Controller {
         foreach($actual_vehicle->getCategories() as $category)
             $selected_categories[] = $category->getId();
 
+        $pictures = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Picture')
+            ->findAll();
+
+        $pictures_select = array();
+        foreach($pictures as $picture)
+            $pictures_select[$picture->getId()] = $picture->getPath();
+
+        $used_pictures = $actual_vehicle->getPicture();
+        foreach($used_pictures as $used_picture){
+            $used_pictures_select[] = $used_picture->getId();
+        }
+
         $breadcrumbs = array(
             array(
                 'link' => '/',
@@ -166,6 +192,7 @@ class VehiclesController extends Controller {
             ->add('description', 'textarea',array('label' => 'Descripción', 'data' => $actual_vehicle->getDescription()))
             ->add('notes', 'textarea',array('label' => 'Notas', 'data' => $actual_vehicle->getNotes()))
             ->add('categories', 'choice', array('label' => 'Marca(s)', 'expanded' => true, 'multiple' => true, 'data' => $selected_categories, 'choices' => $categories_select))
+            ->add('picture',new GallerypickerType(), array('data' => $used_pictures_select,'label' => 'Foto','multiple'  => true, 'choices' => $pictures_select))
             ->add('owner', 'choice', array('label' => 'Dueño', 'choices' => $contacts_select, 'data' => $actual_vehicle->getOwners()[0]->getId()))
             ->add('save', 'submit', array('label' => 'Agregar Mercadería'))
             ->getForm();
@@ -197,6 +224,13 @@ class VehiclesController extends Controller {
 
             $actual_vehicle->addOwner($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Contact')->findById($data['owner'])[0]);
 
+            foreach($actual_vehicle->getPicture() as $picture)
+                $actual_vehicle->removePicture($picture);
+
+            foreach($data['picture'] as $index => $picture)
+                $actual_vehicle->addPicture($this->getDoctrine()->getRepository('MDOAgendaMoparmanBundle:Picture')->find($picture));
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($actual_vehicle);
             $em->flush();
@@ -209,5 +243,19 @@ class VehiclesController extends Controller {
             'breadcrumbs' => $breadcrumbs,
             'letter' => $letter
         ));
+    }
+
+    public function showVehicleAction($id){
+
+        $vehicle = $this->getDoctrine()
+            ->getRepository('MDOAgendaMoparmanBundle:Vehicle')
+            ->findById(intval($id))[0];
+
+        $breadcrumbs = array(
+            array('link' => '/', 'section' => 'Home'),
+            array ('link' => '/vehicles','section' => 'Mercadería'),
+            array('link' => '/vehicles'.$id, 'section' => $vehicle->getTitle())
+        );
+        return $this->render('MDOAgendaMoparmanBundle:Vehicles:single.html.twig', array('breadcrumbs' => $breadcrumbs, 'vehicle' => $vehicle));
     }
 } 

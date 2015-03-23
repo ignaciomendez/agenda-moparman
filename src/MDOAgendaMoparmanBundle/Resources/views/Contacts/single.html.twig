@@ -4,20 +4,23 @@
 <div class="row">
     <div class="large-2 columns">
         <div class="row">
-            <img src="http://placehold.it/1000x1000&amp;text=Foto">
+            {% for picture in contact.picture %}
+                    {% if picture.path is not null %}
+                        <img style="margin:2px;" class="placeholder" src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(64,64,0,0) }}" >
+                        {% set p = true %}
+                    {% endif %}
+            {% endfor %}
         </div>
+        <hr/>
         <div class="row">
             <h5>Categorías</h5>
             <div class="categories">
-                <ul>
                     {% for category in contact.category %}
-                        <li>{{ category.name }}</li>
+                        <a class="label secondary">{{ category.name }}</a>
                     {% endfor %}
-                </ul>
-
             </div>
         </div>
-
+        <hr/>
     </div>
     <div class="large-10 columns">
         <div class="row">

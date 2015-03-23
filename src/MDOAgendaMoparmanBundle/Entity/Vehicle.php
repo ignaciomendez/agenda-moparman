@@ -263,4 +263,42 @@ class Vehicle {
 
         return $this;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $picture;
+
+
+    /**
+     * Add picture
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Picture $picture
+     * @return Vehicle
+     */
+    public function addPicture(\MDOAgendaMoparmanBundle\Entity\Picture $picture)
+    {
+        $this->picture[] = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Remove picture
+     *
+     * @param \MDOAgendaMoparmanBundle\Entity\Picture $picture
+     */
+    public function removePicture(\MDOAgendaMoparmanBundle\Entity\Picture $picture)
+    {
+        $this->picture->removeElement($picture);
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 }

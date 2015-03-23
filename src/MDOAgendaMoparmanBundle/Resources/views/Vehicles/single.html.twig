@@ -4,42 +4,46 @@
 <div class="row">
     <div class="large-2 columns">
         <div class="row">
-            <img src="http://placehold.it/1000x1000&amp;text=Foto">
-        </div>
-        <div class="row">
-            <h5>Categorías</h5>
+            <h6>Categorías / Marcas</h6>
             <div class="categories">
-                <ul>
-                    {% for category in contact.category %}
-                        <li>{{ category.name }}</li>
-                    {% endfor %}
-                </ul>
-
+                {% for category in vehicle.categories %}
+                    <a class="label secondary" href="#">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <h6>Patente</h6>
+            <div class="plate">
+                <a class="label secondary">{{ vehicle.plate }}</a>
             </div>
         </div>
 
     </div>
     <div class="large-10 columns">
         <div class="row">
-            <h4> Información Personal <small><a href="/contact/edit/{{ contact.id }}">[editar]</a></small></h4>
+            <h4> {{ vehicle.title }} <small><a href="/vehicles/edit/{{ vehicle.id }}">[editar]</a></small></h4>
             <div class="large-12 columns">
-                <label><i class="general fi-torso"></i>  {{ contact.name }} </label>
+                <label><i class="general fi-clipboard-notes"></i> Descripción:                </label>
+                {{ vehicle.description }}
             </div>
             <div class="large-12 columns">
-                <label><i class="general fi-marker"></i> {{ contact.city }}</label>
-            </div>
-            <div class="large-12 columns">
-                <label><i class="general fi-telephone"></i> {{ contact.phone }} </label>
-            </div>
-            <div class="large-12 columns">
-                <label><i class="general fi-mail"></i> {{ contact.email }} </label>
-            </div>
-            <div class="large-12 columns">
-                <label>Observaciones:
-                </label>
-                {{ contact.notes }}
+                <label><i class="general fi-clipboard-notes"></i> Observaciones:                </label>
+                {{ vehicle.notes }}
             </div>
             <hr>
+            <div class="row">
+                <ul class="example-orbit" data-orbit>
+                    {% for picture in vehicle.picture %}
+                        {% if picture.path is not null %}
+                            <li>  <img class="placeholder" src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(1000,500,0,0) }}" > </li>
+                        {% endif %}
+                    {% endfor %}
+
+
+                </ul>
+                </div>
+
 
 
         </div>

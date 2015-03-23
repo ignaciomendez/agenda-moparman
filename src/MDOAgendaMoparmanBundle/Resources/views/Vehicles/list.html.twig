@@ -14,7 +14,20 @@
             {% for vehicle in vehicles %}
                 <tr>
                     <td width="50" class="text-center"><input type="checkbox" name="delete_ids[]" value="{{ vehicle.id }}" /></td>
-                    <td width="50" class="text-center"><img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ vehicle.title | split('')[0] }}"></td>
+                    <td width="50" class="text-center">
+                        {% set p = false %}
+                        {% for picture in vehicle.picture %}
+                            {% if p == false %}
+                                {% if picture.path is not null %}
+                                    <img class="placeholder" src="{{ web_image('uploads/pictures/' ~ picture.path ).zoomCrop(64,64,0,0) }}" >
+                                    {% set p = true %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if p == false %}
+                            <img class="placeholder" src="http://placehold.it/64x64/E0E0E0/007095&text={{ vehicle.title | split('')[0] }}">
+                        {% endif %}
+                    </td>
                     <td width="200"><a href="/vehicles/{{ vehicle.id }}">{{ vehicle.title }}</a> <a href="/vehicles/edit/{{ vehicle.id }}">[editar]</a></td>
                     <td width="200">{{ vehicle.plate }}</td>
                     <td width="200">{% for owner in vehicle.getOwners %} <a href="/contact/{{ owner.id }}">{{ owner.name }}</a> {% endfor %}</td>
